@@ -1,4 +1,4 @@
-package com.example.moneyapp.data.model
+package com.example.moneyapp.login.model
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

@@ -1,6 +1,6 @@
-package com.example.moneyapp.data
+package com.example.moneyapp.login
 
-import com.example.moneyapp.data.model.LoggedInUser
+import com.example.moneyapp.login.model.LoggedInUser
 import java.io.IOException
 
 /**

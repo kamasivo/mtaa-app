@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.R
-import com.example.moneyapp.data.LoginRepository
-import com.example.moneyapp.data.Result
+import com.example.moneyapp.login.LoginRepository
+import com.example.moneyapp.login.Result
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 

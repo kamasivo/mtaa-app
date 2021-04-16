@@ -58,11 +58,12 @@ class LoginActivity : AppCompatActivity() {
             }
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
-            }
-            setResult(Activity.RESULT_OK)
+                setResult(Activity.RESULT_OK)
 
-            //Complete and destroy login activity once successful
-            finish()
+                //Complete and destroy login activity once successful
+                finish()
+            }
+
         })
 
         username.afterTextChanged {
@@ -99,18 +100,19 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
-        val welcome = getString(R.string.welcome)
-        val displayName = model.displayName
-        // TODO : initiate successful logged in experience
+//        val welcome = getString(R.string.welcome)
+//        val displayName = model.displayName
+
+        // redirect to main page
         val ide = Intent(this@LoginActivity, NavigationActivity::class.java)
         startActivity(ide)
 
 //        intent.putExtra("letter", holder.button.text.toString())
-        Toast.makeText(
-                applicationContext,
-                "$welcome $displayName",
-                Toast.LENGTH_LONG
-        ).show()
+//        Toast.makeText(
+//                applicationContext,
+//                "$welcome $displayName",
+//                Toast.LENGTH_LONG
+//        ).show()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

@@ -2,8 +2,8 @@ package com.example.moneyapp.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.moneyapp.data.LoginDataSource
-import com.example.moneyapp.data.LoginRepository
+import com.example.moneyapp.login.LoginDataSource
+import com.example.moneyapp.login.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
