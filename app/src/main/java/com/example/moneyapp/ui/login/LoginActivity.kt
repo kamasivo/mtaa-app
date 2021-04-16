@@ -56,8 +56,8 @@ class LoginActivity : AppCompatActivity() {
             if (loginResult.error != null) {
                 showLoginFailed(loginResult.error)
             }
-            if (loginResult.success != null) {
-                updateUiWithUser(loginResult.success)
+            if (loginResult.success) {
+                updateUiWithUser()
                 setResult(Activity.RESULT_OK)
 
                 //Complete and destroy login activity once successful
@@ -99,20 +99,10 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUiWithUser(model: LoggedInUserView) {
-//        val welcome = getString(R.string.welcome)
-//        val displayName = model.displayName
-
+    private fun updateUiWithUser() {
         // redirect to main page
         val ide = Intent(this@LoginActivity, NavigationActivity::class.java)
         startActivity(ide)
-
-//        intent.putExtra("letter", holder.button.text.toString())
-//        Toast.makeText(
-//                applicationContext,
-//                "$welcome $displayName",
-//                Toast.LENGTH_LONG
-//        ).show()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

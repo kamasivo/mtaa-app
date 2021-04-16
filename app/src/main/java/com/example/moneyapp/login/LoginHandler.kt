@@ -3,33 +3,32 @@ package com.example.moneyapp.login
 import android.util.Log
 import com.example.moneyapp.api.models.User
 import com.example.moneyapp.api.services.PostUserService
-import com.example.moneyapp.login.model.LoggedInUser
 
 /**
  * Class that requests authentication and user information from the remote data source and
  * maintains an in-memory cache of login status and user credentials information.
  */
 
-class LoginRepository(val dataSource: LoginDataSource) {
+class LoginHandler() {
     // in-memory cache of the loggedInUser object
-    var user: LoggedInUser? = null
-        private set
+//    var user: LoggedInUser? = null
+//        private set
 
-    val isLoggedIn: Boolean
-        get() = user != null
+//    val isLoggedIn: Boolean
+//        get() = user != null
 
-    init {
+//    init {
         // If user credentials will be cached in local storage, it is recommended it be encrypted
         // @see https://developer.android.com/training/articles/keystore
-        user = null
-    }
+//        user = null
+//    }
 
-    fun logout() {
-        user = null
-        dataSource.logout()
-    }
+//    fun logout() {
+//        user = null
+//        dataSource.logout()
+//    }
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
+    fun login(username: String, password: String): String {
         // handle sign up
         val apiService = PostUserService()
 
@@ -52,17 +51,18 @@ class LoginRepository(val dataSource: LoginDataSource) {
             }
         }
 
-        val result = dataSource.login(username, password)
+        return "OK"
+//        val result = dataSource.login(username, password)
 
-        if (result is Result.Success) {
-            setLoggedInUser(result.data)
-        }
-        return result
+//        if (result is Result.Success) {
+//            setLoggedInUser(result.data)
+//        }
+//        return result
     }
 
-    private fun setLoggedInUser(loggedInUser: LoggedInUser) {
-        this.user = loggedInUser
+//    private fun setLoggedInUser(loggedInUser: LoggedInUser) {
+//        this.user = loggedInUser
 //         If user credentials will be cached in local storage, it is recommended it be encrypted
 //         @see https://developer.android.com/training/articles/keystore
-    }
+//    }
 }

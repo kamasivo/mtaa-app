@@ -6,10 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.R
-import com.example.moneyapp.login.LoginRepository
-import com.example.moneyapp.login.Result
+import com.example.moneyapp.login.LoginHandler
+//import com.example.moneyapp.login.Result
 
-class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
+class LoginViewModel(private val loginHandler: LoginHandler) : ViewModel() {
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -19,11 +19,9 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     fun login(username: String, password: String) {
         Log.d("LoginActivity", "login initiated");
-        // can be launched in a separate asynchronous job
-        val result = loginRepository.login(username, password)
-
-        if (result is Result.Success) {
-            _loginResult.value = LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
+        val result = loginHandler.login(username, password)
+        if (result == "OK") {
+            _loginResult.value = LoginResult(success = true)
         } else {
             _loginResult.value = LoginResult(error = R.string.login_failed)
         }

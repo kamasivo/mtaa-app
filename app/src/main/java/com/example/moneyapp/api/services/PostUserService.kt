@@ -10,7 +10,7 @@ import retrofit2.Response
 
 class PostUserService {
     fun addUser(userData: User, onResult: (String?) -> Unit){
-      Log.d("RestApiService", "Posielam request")
+      Log.d("PostUserService", "Posielam request")
         val retrofit = ServiceBuilder.buildService(PostUserInterface::class.java)
         retrofit.addUser(userData).enqueue(
             object : Callback<String> {
@@ -19,7 +19,7 @@ class PostUserService {
                 }
                 override fun onResponse( call: Call<String>, response: Response<String>) {
                     val res = response.toString()
-                    Log.d("RestApIService", res)
+                    Log.d("PostUserService", res)
                     onResult(res)
                 }
             }
