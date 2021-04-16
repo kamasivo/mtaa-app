@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.R
 import com.example.moneyapp.login.LoginHandler
-//import com.example.moneyapp.login.Result
 
 class LoginViewModel(private val loginHandler: LoginHandler) : ViewModel() {
 

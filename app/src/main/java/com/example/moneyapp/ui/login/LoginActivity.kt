@@ -19,11 +19,12 @@ import com.example.moneyapp.NavigationActivity
 import com.example.moneyapp.R
 
 class LoginActivity : AppCompatActivity() {
-
+    private var _binding: FragmentLoginScreen? = null
     private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         setContentView(R.layout.activity_login)
 
@@ -31,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
+        val register = findViewById<Button>(R.id.register)
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
                 .get(LoginViewModel::class.java)
@@ -95,6 +97,12 @@ class LoginActivity : AppCompatActivity() {
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
                 loginViewModel.login(username.text.toString(), password.text.toString())
+            }
+
+            register.setOnClickListener {
+                // go to register screen
+                val intent = Intent(context, FragmentLoginScreen::class.java)
+                context.startActivity(intent)
             }
         }
     }
