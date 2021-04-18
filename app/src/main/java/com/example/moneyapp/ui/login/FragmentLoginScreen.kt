@@ -14,7 +14,9 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.moneyapp.NavigationActivity
+import com.example.moneyapp.R
 import com.example.moneyapp.databinding.FragmentLoginScreenBinding
 
 class FragmentLoginScreen : Fragment() {
@@ -110,9 +112,13 @@ class FragmentLoginScreen : Fragment() {
             }
 
             register.setOnClickListener {
+                val navController = Navigation.findNavController(view)
+                navController.navigate(R.id.action_fragmentLoginScreen_to_fragmentRegisterScreen)
                 // go to register screen
-                val intent = Intent(context, FragmentLoginScreen::class.java)
-                context.startActivity(intent)
+//                val intent = Intent(context, FragmentRegisterScreen::class.java)
+//                context.startActivity(intent)
+//                this.rootView.findNavController().navigate(R.id.action_fragmentLoginScreen_to_fragmentRegisterScreen)
+//                holder.view.findNavController().navigate(action)
             }
         }
     }

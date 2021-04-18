@@ -9,5 +9,18 @@
         android:id="@+id/fragmentLoginScreen"
         android:name="com.example.moneyapp.ui.login.FragmentLoginScreen"
         android:label="fragment_login_screen"
-        tools:layout="@layout/fragment_login_screen" />
+        tools:layout="@layout/fragment_login_screen" >
+        <action
+            android:id="@+id/action_fragmentLoginScreen_to_fragmentRegisterScreen"
+            app:destination="@id/fragmentRegisterScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentRegisterScreen"
+        android:name="com.example.moneyapp.ui.login.FragmentRegisterScreen"
+        android:label="fragment_register_screen"
+        tools:layout="@layout/fragment_register_screen" >
+        <action
+            android:id="@+id/action_fragmentRegisterScreen_to_fragmentLoginScreen"
+            app:destination="@id/fragmentLoginScreen" />
+    </fragment>
 </navigation>
