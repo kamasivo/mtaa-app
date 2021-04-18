@@ -1,4 +1,4 @@
-package com.example.moneyapp.ui.login
+package com.example.moneyapp.ui.register
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,14 +14,12 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import com.example.moneyapp.NavigationActivity
-import com.example.moneyapp.R
-import com.example.moneyapp.databinding.FragmentLoginScreenBinding
+import com.example.moneyapp.databinding.FragmentRegisterScreenBinding
 
-class FragmentLoginScreen : Fragment() {
-    private var _binding: FragmentLoginScreenBinding? = null
-    private lateinit var loginViewModel: LoginViewModel
+class FragmentRegisterScreen : Fragment() {
+    private var _binding: FragmentRegisterScreenBinding? = null
+    private lateinit var registerViewModel: RegisterViewModel
 
     private val binding get() = _binding!!
 
@@ -34,41 +32,44 @@ class FragmentLoginScreen : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentLoginScreenBinding.inflate(inflater, container, false)
+        _binding = FragmentRegisterScreenBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val username = binding.username
+        val email = binding.email
         val password = binding.password
-        val login = binding.login
+        val fullName = binding.fullName
         val loading = binding.loading
         val register = binding.register
 
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-                .get(LoginViewModel::class.java)
+        registerViewModel = ViewModelProvider(this, RegisterViewModelFactory())
+            .get(RegisterViewModel::class.java)
 
-        loginViewModel.loginFormState.observe(viewLifecycleOwner, Observer {
-            val loginState = it ?: return@Observer
+        registerViewModel.registerFormState.observe(viewLifecycleOwner, Observer {
+            val registerState = it ?: return@Observer
 
             // disable login button unless both username / password is valid
-            login.isEnabled = loginState.isDataValid
+            register.isEnabled = registerState.isDataValid
 
-            if (loginState.usernameError != null) {
-                username.error = getString(loginState.usernameError)
+            if (registerState.emailError != null) {
+                email.error = getString(registerState.emailError)
             }
-            if (loginState.passwordError != null) {
-                password.error = getString(loginState.passwordError)
+            if (registerState.passwordError != null) {
+                password.error = getString(registerState.passwordError)
+            }
+            if (registerState.usernameError != null) {
+                fullName.error = getString(registerState.usernameError)
             }
         })
 
-        loginViewModel.loginResult.observe(viewLifecycleOwner, Observer {
+        registerViewModel.registerResult.observe(viewLifecycleOwner, Observer {
             val loginResult = it ?: return@Observer
 
             loading.visibility = View.GONE
             if (loginResult.error != null) {
-                showLoginFailed(loginResult.error)
+                showRegisterFailed(loginResult.error)
             }
             if (loginResult.success) {
                 updateUiWithUser()
@@ -78,55 +79,60 @@ class FragmentLoginScreen : Fragment() {
 
         })
 
-        username.afterTextChanged {
-            loginViewModel.loginDataChanged(
-                    username.text.toString(),
-                    password.text.toString()
+        email.afterTextChanged {
+            registerViewModel.registerDataChanged(
+                fullName.text.toString(),
+                password.text.toString(),
+                email.text.toString()
+            )
+        }
+
+        fullName.afterTextChanged {
+            registerViewModel.registerDataChanged(
+                fullName.text.toString(),
+                password.text.toString(),
+                email.text.toString()
             )
         }
 
         password.apply {
             afterTextChanged {
-                loginViewModel.loginDataChanged(
-                        username.text.toString(),
-                        password.text.toString()
+                registerViewModel.registerDataChanged(
+                    fullName.text.toString(),
+                    password.text.toString(),
+                    email.text.toString()
                 )
             }
 
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
-                        loginViewModel.login(
-                                username.text.toString(),
-                                password.text.toString()
+                        registerViewModel.register(
+                            fullName.text.toString(),
+                            password.text.toString(),
+                            email.text.toString()
                         )
                 }
                 false
             }
 
-            login.setOnClickListener {
+            register.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
+                registerViewModel.register(fullName.text.toString(), password.text.toString(), email.text.toString())
             }
 
-            register.setOnClickListener {
-                val navController = Navigation.findNavController(view)
-                navController.navigate(R.id.action_fragmentLoginScreen_to_fragmentRegisterScreen)
-            }
         }
     }
-
     private fun updateUiWithUser() {
         // redirect to main page
         val ide = Intent(this.context, NavigationActivity::class.java)
         startActivity(ide)
     }
 
-    private fun showLoginFailed(@StringRes errorString: Int) {
+    private fun showRegisterFailed(@StringRes errorString: Int) {
         Toast.makeText(this.context, errorString, Toast.LENGTH_SHORT).show()
     }
 }
-
 
 fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
     this.addTextChangedListener(object : TextWatcher {
@@ -139,7 +145,3 @@ fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
     })
 }
-
-
-
-

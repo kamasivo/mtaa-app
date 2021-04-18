@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentRegisterScreen"
-        android:name="com.example.moneyapp.ui.login.FragmentRegisterScreen"
+        android:name="com.example.moneyapp.ui.register.FragmentRegisterScreen"
         android:label="fragment_register_screen"
         tools:layout="@layout/fragment_register_screen" >
         <action
