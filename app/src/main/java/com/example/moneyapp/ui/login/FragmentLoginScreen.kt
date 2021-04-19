@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,6 +72,7 @@ class FragmentLoginScreen : Fragment() {
                 showLoginFailed(loginResult.error)
             }
             if (loginResult.success) {
+                Log.d("FragmentLoginScreen", "go to main screen as registered user");
                 updateUiWithUser()
 //                setResult(Activity.RESULT_OK)
 //                finish()

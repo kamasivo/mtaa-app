@@ -20,6 +20,7 @@ class LoginViewModel(private val loginHandler: LoginHandler) : ViewModel() {
         Log.d("LoginActivity", "login initiated");
         val result = loginHandler.login(username, password)
         if (result == "OK") {
+            Log.d("LoginActivity", "handler return ok");
             _loginResult.value = LoginResult(success = true)
         } else {
             _loginResult.value = LoginResult(error = R.string.login_failed)

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -65,13 +66,14 @@ class FragmentRegisterScreen : Fragment() {
         })
 
         registerViewModel.registerResult.observe(viewLifecycleOwner, Observer {
-            val loginResult = it ?: return@Observer
+            val registerResult = it ?: return@Observer
 
             loading.visibility = View.GONE
-            if (loginResult.error != null) {
-                showRegisterFailed(loginResult.error)
+            if (registerResult.error != null) {
+                showRegisterFailed(registerResult.error)
             }
-            if (loginResult.success) {
+            if (registerResult.success) {
+                Log.d("FragmentRegisterScreen", "Going to main screen")
                 updateUiWithUser()
 //                setResult(Activity.RESULT_OK)
 //                finish()

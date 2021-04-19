@@ -19,6 +19,7 @@ class RegisterViewModel(private val registerHandler: RegisterHandler) : ViewMode
         Log.d("RegisterViewModel", "register initiated");
         val result = registerHandler.register(username, password, email)
         if (result == "OK") {
+            Log.d("RegisterViewModel", "registerhandler vratil success");
             _registerResult.value = RegisterResult(success = true)
         } else {
             _registerResult.value = RegisterResult(error = R.string.login_failed)
@@ -27,7 +28,7 @@ class RegisterViewModel(private val registerHandler: RegisterHandler) : ViewMode
 
     fun registerDataChanged(username: String, password: String, email: String) {
         if (!isEmailValid(email)) {
-            _registerForm.value = RegisterFormState(emailError = R.string.invalid_username)
+            _registerForm.value = RegisterFormState(emailError = R.string.invalid_email)
         } else if (!isPasswordValid(password)) {
             _registerForm.value = RegisterFormState(passwordError = R.string.invalid_password)
         } else if (!isUserNameValid(username)){
@@ -48,9 +49,9 @@ class RegisterViewModel(private val registerHandler: RegisterHandler) : ViewMode
 
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
-        return password.length > 5
+        return password.length > 4
     }
     private fun isUserNameValid(username: String): Boolean {
-        return username.length > 5
+        return username.length > 2
     }
 }
