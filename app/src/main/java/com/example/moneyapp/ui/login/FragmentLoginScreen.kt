@@ -13,8 +13,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.moneyapp.NavigationActivity
 import com.example.moneyapp.R
@@ -22,7 +22,6 @@ import com.example.moneyapp.databinding.FragmentLoginScreenBinding
 
 class FragmentLoginScreen : Fragment() {
     private var _binding: FragmentLoginScreenBinding? = null
-    private lateinit var loginViewModel: LoginViewModel
 
     private val binding get() = _binding!!
 
@@ -47,10 +46,11 @@ class FragmentLoginScreen : Fragment() {
         val loading = binding.loading
         val register = binding.register
 
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-                .get(LoginViewModel::class.java)
 
-        loginViewModel.loginFormState.observe(viewLifecycleOwner, Observer {
+
+        val model: LoginViewModel by viewModels()
+
+        model.loginFormState.observe(viewLifecycleOwner, Observer {
             val loginState = it ?: return@Observer
 
             // disable login button unless both username / password is valid
@@ -64,7 +64,7 @@ class FragmentLoginScreen : Fragment() {
             }
         })
 
-        loginViewModel.loginResult.observe(viewLifecycleOwner, Observer {
+        model.loginResult.observe(viewLifecycleOwner, Observer {
             val loginResult = it ?: return@Observer
 
             loading.visibility = View.GONE
@@ -81,7 +81,7 @@ class FragmentLoginScreen : Fragment() {
         })
 
         username.afterTextChanged {
-            loginViewModel.loginDataChanged(
+            model.loginDataChanged(
                     username.text.toString(),
                     password.text.toString()
             )
@@ -89,7 +89,7 @@ class FragmentLoginScreen : Fragment() {
 
         password.apply {
             afterTextChanged {
-                loginViewModel.loginDataChanged(
+                model.loginDataChanged(
                         username.text.toString(),
                         password.text.toString()
                 )
@@ -98,7 +98,7 @@ class FragmentLoginScreen : Fragment() {
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
-                        loginViewModel.login(
+                        model.login(
                                 username.text.toString(),
                                 password.text.toString()
                         )
@@ -108,7 +108,7 @@ class FragmentLoginScreen : Fragment() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
+                model.login(username.text.toString(), password.text.toString())
             }
 
             register.setOnClickListener {

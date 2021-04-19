@@ -6,9 +6,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.R
-import com.example.moneyapp.login.RegisterHandler
+import com.example.moneyapp.api.models.User
+import com.example.moneyapp.api.services.PostUserService
 
-class RegisterViewModel(private val registerHandler: RegisterHandler) : ViewModel() {
+class RegisterViewModel() : ViewModel() {
     private val _registerForm = MutableLiveData<RegisterFormState>()
     val registerFormState: LiveData<RegisterFormState> = _registerForm
 
@@ -17,12 +18,22 @@ class RegisterViewModel(private val registerHandler: RegisterHandler) : ViewMode
 
     fun register(username: String, password: String, email: String) {
         Log.d("RegisterViewModel", "register initiated");
-        val result = registerHandler.register(username, password, email)
-        if (result == "OK") {
-            Log.d("RegisterViewModel", "registerhandler vratil success");
-            _registerResult.value = RegisterResult(success = true)
-        } else {
-            _registerResult.value = RegisterResult(error = R.string.login_failed)
+        val apiService = PostUserService()
+
+        val userInfo = User(
+                fullName = username,
+                emailAddress = email,
+                password = password
+        )
+        apiService.addUser(userInfo) {
+            if (it != null) {
+                Log.d("RegisterViewModel", it)
+                if (it == "OK") {
+                    _registerResult.value = RegisterResult(success = true)
+                } else {
+                    _registerResult.value = RegisterResult(error = R.string.login_failed)
+                }
+            }
         }
     }
 

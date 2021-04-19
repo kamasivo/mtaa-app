@@ -13,14 +13,13 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.moneyapp.NavigationActivity
 import com.example.moneyapp.databinding.FragmentRegisterScreenBinding
 
 class FragmentRegisterScreen : Fragment() {
     private var _binding: FragmentRegisterScreenBinding? = null
-    private lateinit var registerViewModel: RegisterViewModel
 
     private val binding get() = _binding!!
 
@@ -45,10 +44,9 @@ class FragmentRegisterScreen : Fragment() {
         val loading = binding.loading
         val register = binding.register
 
-        registerViewModel = ViewModelProvider(this, RegisterViewModelFactory())
-            .get(RegisterViewModel::class.java)
+        val model: RegisterViewModel by viewModels()
 
-        registerViewModel.registerFormState.observe(viewLifecycleOwner, Observer {
+        model.registerFormState.observe(viewLifecycleOwner, Observer {
             val registerState = it ?: return@Observer
 
             // disable login button unless both username / password is valid
@@ -65,7 +63,7 @@ class FragmentRegisterScreen : Fragment() {
             }
         })
 
-        registerViewModel.registerResult.observe(viewLifecycleOwner, Observer {
+        model.registerResult.observe(viewLifecycleOwner, Observer {
             val registerResult = it ?: return@Observer
 
             loading.visibility = View.GONE
@@ -82,7 +80,7 @@ class FragmentRegisterScreen : Fragment() {
         })
 
         email.afterTextChanged {
-            registerViewModel.registerDataChanged(
+            model.registerDataChanged(
                 fullName.text.toString(),
                 password.text.toString(),
                 email.text.toString()
@@ -90,7 +88,7 @@ class FragmentRegisterScreen : Fragment() {
         }
 
         fullName.afterTextChanged {
-            registerViewModel.registerDataChanged(
+            model.registerDataChanged(
                 fullName.text.toString(),
                 password.text.toString(),
                 email.text.toString()
@@ -99,7 +97,7 @@ class FragmentRegisterScreen : Fragment() {
 
         password.apply {
             afterTextChanged {
-                registerViewModel.registerDataChanged(
+                model.registerDataChanged(
                     fullName.text.toString(),
                     password.text.toString(),
                     email.text.toString()
@@ -109,7 +107,7 @@ class FragmentRegisterScreen : Fragment() {
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
-                        registerViewModel.register(
+                        model.register(
                             fullName.text.toString(),
                             password.text.toString(),
                             email.text.toString()
@@ -120,7 +118,7 @@ class FragmentRegisterScreen : Fragment() {
 
             register.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                registerViewModel.register(fullName.text.toString(), password.text.toString(), email.text.toString())
+                model.register(fullName.text.toString(), password.text.toString(), email.text.toString())
             }
 
         }

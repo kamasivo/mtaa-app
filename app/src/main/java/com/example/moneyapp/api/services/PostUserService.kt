@@ -13,7 +13,7 @@ import retrofit2.Response
 
 
 class PostUserService {
-    fun addUser(userData: User, onResult: (String?) -> Unit) {
+    fun addUser(userData: User, onResult: (String?) -> Unit){
       Log.d("PostUserService", "Posielam request")
         val retrofit = ServiceBuilder.buildService(PostUserInterface::class.java)
         retrofit.addUser(userData).enqueue(
