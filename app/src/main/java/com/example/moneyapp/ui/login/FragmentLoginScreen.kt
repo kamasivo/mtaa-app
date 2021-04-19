@@ -72,7 +72,7 @@ class FragmentLoginScreen : Fragment() {
                 showLoginFailed(loginResult.error)
             }
             if (loginResult.success) {
-                Log.d("FragmentLoginScreen", "go to main screen as registered user");
+                Log.d("FragmentLoginScreen", "go to main screen as loggin user");
                 updateUiWithUser()
 //                setResult(Activity.RESULT_OK)
 //                finish()

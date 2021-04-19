@@ -13,7 +13,7 @@ import retrofit2.Response
 
 
 class PostUserService {
-    fun addUser(userData: User, onResult: (String?) -> Unit){
+    fun addUser(userData: User, onResult: (String?) -> Unit) {
       Log.d("PostUserService", "Posielam request")
         val retrofit = ServiceBuilder.buildService(PostUserInterface::class.java)
         retrofit.addUser(userData).enqueue(
@@ -25,10 +25,19 @@ class PostUserService {
                 }
 
                 override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
-                    val jsonObject = JSONObject(Gson().toJson(response.body()))
-                    val msg = jsonObject.getString("id")
-                    if(msg != null) {
-                        onResult("OK")
+                    Log.d("PostUserService", response.toString())
+                    if(response.isSuccessful) {
+                        val jsonObject = JSONObject(Gson().toJson(response.body()))
+                        Log.d("PostUserService", jsonObject.toString())
+                        val id = jsonObject.getString("id")
+                        Log.d("PostUserService", id)
+                        if(id != null) {
+                            onResult("OK")
+                        }
+                    }
+                    else {
+                        Log.d("PostUserService", "404 response")
+                        onResult("404")
                     }
                 }
             }

@@ -23,7 +23,7 @@ class LoginHandler() {
 
         apiService.addUser(userInfo) {
             if (it != null) {
-                Log.d("LoginRepository", it)
+                Log.d("LoginHandler", it)
                 if (it == "OK") {
                     // successfully created new user
                 } else {
@@ -31,7 +31,7 @@ class LoginHandler() {
                 }
             }
         }
-
+        Log.d("LoginHandler", "return ok natvrdo")
         return "OK"
     }
 }

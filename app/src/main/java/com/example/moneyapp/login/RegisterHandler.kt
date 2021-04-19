@@ -18,16 +18,18 @@ class RegisterHandler {
             password = password
         )
         Log.d("RegisterHandler", userInfo.toString());
-        apiService.addUser(userInfo) {
-            if (it != null) {
-//                Log.d("RegisterRepository", it)
-                if (it == "OK") {
-                    result = "OK"
-                } else {
-                    result = "CONFLICT"
-                }
-            }
-        }
+//        apiService.addUser(userInfo) {
+//            if (it != null) {
+//                Log.d("RegisterHandler", it) // toto viem este dostat
+//                if (it == "OK") {
+//                    result = "OK"
+//                } else {
+//                    result = "CONFLICT"
+//                }
+//            }
+//        }
+        // sem sa uz moja funkcia nedostane nikdy
+        Log.d("RegisterRepository", result)
         return result
     }
 }
