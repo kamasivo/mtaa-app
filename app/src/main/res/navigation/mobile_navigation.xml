@@ -3,23 +3,85 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
-
+    app:startDestination="@id/homeFragment">
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/bill"
+        android:name="com.example.moneyapp.Bill"
+        android:label="fragment_bill"
+        tools:layout="@layout/fragment_bill" >
+        <action
+            android:id="@+id/action_bill_to_updateTransaction"
+            app:destination="@id/updateTransaction" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateTransaction"
+        android:name="com.example.moneyapp.UpdateTransaction"
+        android:label="fragment_update_transaction"
+        tools:layout="@layout/fragment_update_transaction" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.moneyapp.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/category"
+        android:name="com.example.moneyapp.Category"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" />
+    <fragment
+        android:id="@+id/type"
+        android:name="com.example.moneyapp.Type"
+        android:label="fragment_type"
+        tools:layout="@layout/fragment_type" />
+    <fragment
+        android:id="@+id/newBill"
+        android:name="com.example.moneyapp.NewBill"
+        android:label="fragment_new_bill"
+        tools:layout="@layout/fragment_new_bill" />
+    <fragment
+        android:id="@+id/createExpenditure"
+        android:name="com.example.moneyapp.CreateExpenditure"
+        android:label="fragment_create_expenditure"
+        tools:layout="@layout/fragment_create_expenditure" />
+    <fragment
+        android:id="@+id/createIncome"
+        android:name="com.example.moneyapp.CreateIncome"
+        android:label="fragment_create_income"
+        tools:layout="@layout/fragment_create_income" />
+    <fragment
+        android:id="@+id/splitIncome"
+        android:name="com.example.moneyapp.SplitIncome"
+        android:label="fragment_split_income"
+        tools:layout="@layout/fragment_split_income" >
+        <action
+            android:id="@+id/action_splitIncome_to_createIncome"
+            app:destination="@id/createIncome" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
         android:name="com.example.moneyapp.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.moneyapp.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
-
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.moneyapp.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_bill"
+            app:destination="@id/bill" />
+        <action
+            android:id="@+id/action_homeFragment_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_homeFragment_to_category"
+            app:destination="@id/category" />
+        <action
+            android:id="@+id/action_homeFragment_to_type"
+            app:destination="@id/type" />
+        <action
+            android:id="@+id/action_homeFragment_to_newBill"
+            app:destination="@id/newBill" />
+        <action
+            android:id="@+id/action_homeFragment_to_createExpenditure"
+            app:destination="@id/createExpenditure" />
+        <action
+            android:id="@+id/action_homeFragment_to_splitIncome"
+            app:destination="@id/splitIncome" />
+    </fragment>
 </navigation>
