@@ -1,4 +1,4 @@
-package com.example.moneyapp.ui.Profile
+package com.example.moneyapp.ui.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
