@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,59 +11,80 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="132dp"
         android:text="Zostatok na účte"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="164dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="32dp"
         android:text="Minuté tento mesiac"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="206dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="32dp"
         android:text="percento idúce na tento účet"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="252dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="176dp"
         android:layout_height="57dp"
+        android:layout_marginBottom="404dp"
         android:text="Upraviť"
-        tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="304dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editTextTextPersonName4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Názov účtu"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="58dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextPersonName5"
         android:layout_width="157dp"
         android:layout_height="45dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="124dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        tools:layout_editor_absoluteX="238dp"
-        tools:layout_editor_absoluteY="238dp" />
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="32dp"
         android:text="Transakcie"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="385dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
