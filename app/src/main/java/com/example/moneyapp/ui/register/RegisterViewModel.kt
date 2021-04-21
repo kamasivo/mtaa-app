@@ -1,7 +1,6 @@
 package com.example.moneyapp.ui.register
 
 import android.util.Log
-import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -43,7 +42,7 @@ class RegisterViewModel() : ViewModel() {
         } else if (!isPasswordValid(password)) {
             _registerForm.value = RegisterFormState(passwordError = R.string.invalid_password)
         } else if (!isUserNameValid(username)){
-            _registerForm.value = RegisterFormState(emailError = R.string.invalid_username)
+            _registerForm.value = RegisterFormState(usernameError = R.string.invalid_username)
         } else {
             _registerForm.value = RegisterFormState(isDataValid = true)
         }
@@ -51,11 +50,10 @@ class RegisterViewModel() : ViewModel() {
 
     // A placeholder username validation check
     private fun isEmailValid(email: String): Boolean {
-        return if (email.contains('@')) {
-            Patterns.EMAIL_ADDRESS.matcher(email).matches()
-        } else {
-            email.isNotBlank()
+        if(email.contains('@') && email.length > 4) {
+            return true
         }
+        return false
     }
 
     // A placeholder password validation check
