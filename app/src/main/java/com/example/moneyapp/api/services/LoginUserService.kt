@@ -29,8 +29,8 @@ class LoginUserService {
                         if(response.isSuccessful) {
                             val jsonObject = JSONObject(Gson().toJson(response.body()))
                             Log.d("LoginUserService", jsonObject.toString())
-                            val id = jsonObject.getString("id")
-                            Log.d("LoginUserService", id)
+                            val result = jsonObject.getString("result")
+                            Log.d("LoginUserService", result)
                             onResult("OK")
                         }
                         else {

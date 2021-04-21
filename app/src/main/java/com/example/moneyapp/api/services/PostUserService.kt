@@ -29,7 +29,7 @@ class PostUserService {
                     if(response.isSuccessful) {
                         val jsonObject = JSONObject(Gson().toJson(response.body()))
                         Log.d("PostUserService", jsonObject.toString())
-                        val id = jsonObject.getString("id")
+                        val id = jsonObject.getString("result")
                         Log.d("PostUserService", id)
                         if(id != null) {
                             onResult("OK")
