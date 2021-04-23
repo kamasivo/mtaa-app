@@ -1,4 +1,4 @@
-package com.example.moneyapp.ui.NewBill
+package com.example.moneyapp.ui.newbill
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

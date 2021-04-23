@@ -1,4 +1,4 @@
-package com.example.moneyapp.ui.CreateIncome
+package com.example.moneyapp.ui.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.moneyapp.R
 
-
-class CreateIncome : Fragment() {
+class Profile : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +18,7 @@ class CreateIncome : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_income, container, false)
+        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
 }

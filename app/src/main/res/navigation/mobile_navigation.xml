@@ -15,12 +15,12 @@
     </fragment>
     <fragment
         android:id="@+id/nav_updateTransaction"
-        android:name="com.example.moneyapp.ui.UpdateTransaction.UpdateTransaction"
+        android:name="com.example.moneyapp.ui.updatetransaction.UpdateTransaction"
         android:label="fragment_update_transaction"
         tools:layout="@layout/fragment_update_transaction" />
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.moneyapp.ui.Profile.Profile"
+        android:name="com.example.moneyapp.ui.profile.Profile"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
@@ -35,17 +35,17 @@
         tools:layout="@layout/fragment_type" />
     <fragment
         android:id="@+id/nav_newBill"
-        android:name="com.example.moneyapp.ui.NewBill.NewBill"
+        android:name="com.example.moneyapp.ui.newbill.NewBill"
         android:label="fragment_new_bill"
         tools:layout="@layout/fragment_new_bill" />
     <fragment
         android:id="@+id/nav_createExpenditure"
-        android:name="com.example.moneyapp.ui.CreateExpenditure.CreateExpenditure"
+        android:name="com.example.moneyapp.ui.createexpenditure.CreateExpenditure"
         android:label="fragment_create_expenditure"
         tools:layout="@layout/fragment_create_expenditure" />
     <fragment
         android:id="@+id/nav_createIncome"
-        android:name="com.example.moneyapp.ui.CreateIncome.CreateIncome"
+        android:name="com.example.moneyapp.ui.createincome.CreateIncome"
         android:label="fragment_create_income"
         tools:layout="@layout/fragment_create_income" />
     <fragment

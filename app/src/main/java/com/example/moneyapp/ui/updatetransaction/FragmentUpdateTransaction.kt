@@ -1,4 +1,4 @@
-package com.example.moneyapp.ui.CreateExpenditure
+package com.example.moneyapp.ui.updatetransaction
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.moneyapp.R
 
-
-class CreateExpenditure : Fragment() {
+class UpdateTransaction : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +18,7 @@ class CreateExpenditure : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_expenditure, container, false)
+        return inflater.inflate(R.layout.fragment_update_transaction, container, false)
     }
 
 }

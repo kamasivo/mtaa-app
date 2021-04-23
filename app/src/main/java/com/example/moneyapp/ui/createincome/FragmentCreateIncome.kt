@@ -1,12 +1,14 @@
-package com.example.moneyapp
+package com.example.moneyapp.ui.createincome
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import com.example.moneyapp.R
 
-class Bill : Fragment() {
+
+class CreateIncome : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +19,7 @@ class Bill : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bill, container, false)
+        return inflater.inflate(R.layout.fragment_create_income, container, false)
     }
 
 }
