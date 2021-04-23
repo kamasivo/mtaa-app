@@ -15,7 +15,8 @@ import retrofit2.Response
 class PostUserService {
     fun addUser(userData: User, onResult: (String?) -> Unit){
       Log.d("PostUserService", "Posielam request")
-        val retrofit = ServiceBuilder.buildService(PostUserInterface::class.java)
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(PostUserInterface::class.java)
         retrofit.addUser(userData).enqueue(
             object : Callback<JsonObject> {
                 override fun onFailure(call: Call<JsonObject>, t: Throwable) {
@@ -36,8 +37,8 @@ class PostUserService {
                         }
                     }
                     else {
-                        Log.d("PostUserService", "404 response")
-                        onResult("404")
+                        Log.d("PostUserService", response.code().toString())
+                        onResult(response.code().toString())
                     }
                 }
             }

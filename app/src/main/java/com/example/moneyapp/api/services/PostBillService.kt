@@ -15,7 +15,8 @@ import retrofit2.Response
 class PostBillService {
     fun addBill(userData: Bill, onResult: (String?) -> Unit){
       Log.d("PostBillService", "Posielam request")
-        val retrofit = ServiceBuilder.buildService(PostBillInterface::class.java)
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(PostBillInterface::class.java)
         retrofit.addBill(userData).enqueue(
             object : Callback<JsonObject> {
                 override fun onFailure(call: Call<JsonObject>, t: Throwable) {
@@ -36,8 +37,8 @@ class PostBillService {
                         }
                     }
                     else {
-                        Log.d("PostBillService", "404 response")
-                        onResult("404")
+                        Log.d("PostBillService", response.code().toString())
+                        onResult(response.code().toString())
                     }
                 }
             }
