@@ -33,5 +33,8 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             text.text = it
         })
+
+        homeViewModel.loadBills()
+
     }
 }

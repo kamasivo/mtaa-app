@@ -18,7 +18,7 @@ class HomeViewModel : ViewModel() {
 
         apiService.getbill {
         if (it != null) {
-            Log.d("HomeViewModel", it)
+            Log.d("HomeViewModel", it.toString())
         }
     }
     }

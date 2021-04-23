@@ -4,8 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.moneyapp.R
-import com.example.moneyapp.api.models.Bill
+import com.example.moneyapp.api.models.NewBillModel
 import com.example.moneyapp.api.services.PostBillService
 
 class NewBillViewModel() : ViewModel() {
@@ -19,22 +18,22 @@ class NewBillViewModel() : ViewModel() {
         Log.d("NewBillViewModel", "newbill initiated");
         val apiService = PostBillService()
 
-        val billInfo = Bill(
+        val billInfo = NewBillModel(
                 name = name,
                 incomePercents = 123,
                 description = description,
                 sum = 123
         )
-        apiService.addBill(billInfo) {
-            if (it != null) {
-                Log.d("NewBillViewModel", it)
-                if (it == "OK") {
-                    _newBillResult.value = NewBillResult(success = true)
-                } else {
-                    _newBillResult.value = NewBillResult(error = R.string.login_failed)
-                }
-            }
-        }
+//        apiService.addBill(billInfo) {
+//            if (it != null) {
+//                Log.d("NewBillViewModel", it)
+//                if (it == "OK") {
+//                    _newBillResult.value = NewBillResult(success = true)
+//                } else {
+//                    _newBillResult.value = NewBillResult(error = R.string.login_failed)
+//                }
+//            }
+//        }
     }
 
 //    fun newBillDataChanged(username: String, password: String, email: String) {
