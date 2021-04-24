@@ -26,4 +26,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="prompt_fullName">Enter full name</string>
+    <string name="invalid_name">Invalid name</string>
+    <string name="zostatok_na_te">Zostatok na účte</string>
+    <string name="minut_tento_mesiac">Minuté tento mesiac</string>
+    <string name="invalid_incomePercents">invalid income percents</string>
+    <string name="invalid_sum">invalid sum</string>
 </resources>

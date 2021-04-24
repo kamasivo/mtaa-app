@@ -5,7 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.R
-
+import com.example.moneyapp.api.models.UserLogin
+import com.example.moneyapp.api.services.LoginUserService
 
 class BillViewModel() : ViewModel() {
 

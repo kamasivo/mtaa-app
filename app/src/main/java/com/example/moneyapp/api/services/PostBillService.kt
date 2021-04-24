@@ -13,10 +13,10 @@ import retrofit2.Response
 
 
 class PostBillService {
-    fun addBill(userData: Bill, onResult: (String?) -> Unit){
+    fun addBill(billData: Bill, onResult: (String?) -> Unit){
       Log.d("PostBillService", "Posielam request")
         val retrofit = ServiceBuilder.buildService(PostBillInterface::class.java)
-        retrofit.addBill(userData).enqueue(
+        retrofit.addBill(billData).enqueue(
             object : Callback<JsonObject> {
                 override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                     Log.d("PostBillService", "failed to response")

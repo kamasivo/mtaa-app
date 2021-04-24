@@ -15,8 +15,8 @@ class NewBillViewModel() : ViewModel() {
     private val _newBillResult = MutableLiveData<NewBillResult>()
     val newBillResult: LiveData<NewBillResult> = _newBillResult
 
-    fun register(name: String, incomePercents: Int, description: String, sum: Int) {
-        Log.d("NewBillViewModel", "newbill initiated");
+    fun newBill(name: String, incomePercents: Int, description: String, sum: Int) {
+        Log.d("NewBillViewModel", "newBill initiated");
         val apiService = PostBillService()
 
         val billInfo = Bill(
@@ -37,31 +37,28 @@ class NewBillViewModel() : ViewModel() {
         }
     }
 
-//    fun newBillDataChanged(username: String, password: String, email: String) {
-//        if (!isEmailValid(email)) {
-//            _newBillForm.value = newBillFormState(emailError = R.string.invalid_email)
-//        } else if (!isPasswordValid(password)) {
-//            _newBillForm.value = newBillFormState(passwordError = R.string.invalid_password)
-//        } else if (!isNameValid(username)){
-//            _newBillForm.value = newBillFormState(usernameError = R.string.invalid_username)
-//        } else {
-//            _newBillForm.value = newBillFormState(isDataValid = true)
-//        }
-//    }
-//
-//    // A placeholder username validation check
-//    private fun isEmailValid(email: String): Boolean {
-//        if(email.contains('@') && email.length > 4) {
-//            return true
-//        }
-//        return false
-//    }
-//
-//    // A placeholder password validation check
-//    private fun isPasswordValid(password: String): Boolean {
-//        return password.length > 4
-//    }
-//    private fun isNameValid(username: String): Boolean {
-//        return username.length > 2
-//    }
+    fun newBillDataChanged(name: String, incomePercents: Int, description: String, sum: Int) {
+        if (!isNameValid(name)) {
+            _newBillForm.value = NewBillFormState(nameError = R.string.invalid_name)
+        } else if (!isIncomePercentsValid(incomePercents)) {
+            _newBillForm.value = NewBillFormState(incomePercentsError = R.string.invalid_incomePercents)
+        } else if (!isSumValid(sum)){
+            _newBillForm.value = NewBillFormState(sumError = R.string.invalid_sum)
+        } else {
+            _newBillForm.value = NewBillFormState(isDataValid = true)
+        }
+    }
+
+    // A placeholder username validation check
+    private fun isSumValid(sum: Int): Boolean {
+        return sum != null
+    }
+
+    // A placeholder password validation check
+    private fun isIncomePercentsValid(incomePercents: Int): Boolean {
+        return incomePercents != null
+    }
+    private fun isNameValid(username: String): Boolean {
+        return username.length > 2
+    }
 }
