@@ -25,9 +25,9 @@ class FragmentLoginScreen : Fragment() {
 
     private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +46,9 @@ class FragmentLoginScreen : Fragment() {
         val loading = binding.loading
         val register = binding.register
 
+        username.setText("test@email.sk")
+        password.setText("heslo")
+
 
 
         val model: LoginViewModel by viewModels()
@@ -55,7 +58,6 @@ class FragmentLoginScreen : Fragment() {
 
             // disable login button unless both username / password is valid
             login.isEnabled = loginState.isDataValid
-
             if (loginState.usernameError != null) {
                 username.error = getString(loginState.usernameError)
             }
@@ -74,8 +76,6 @@ class FragmentLoginScreen : Fragment() {
             if (loginResult.success) {
                 Log.d("FragmentLoginScreen", "go to main screen as loggin user");
                 updateUiWithUser()
-//                setResult(Activity.RESULT_OK)
-//                finish()
             }
 
         })
@@ -107,6 +107,7 @@ class FragmentLoginScreen : Fragment() {
             }
 
             login.setOnClickListener {
+                updateUiWithUser()
                 loading.visibility = View.VISIBLE
                 model.login(username.text.toString(), password.text.toString())
             }

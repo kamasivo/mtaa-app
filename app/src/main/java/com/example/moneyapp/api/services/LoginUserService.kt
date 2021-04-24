@@ -15,7 +15,8 @@ class LoginUserService {
 
     fun loginUser(userData: UserLogin, onResult: (String?) -> Unit){
         Log.d("LoginUserService", "Posielam request")
-        val retrofit = ServiceBuilder.buildService(LoginUserInterface::class.java)
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(LoginUserInterface::class.java)
         retrofit.loginUser(userData).enqueue(
                 object : Callback<JsonObject> {
                     override fun onFailure(call: Call<JsonObject>, t: Throwable) {
@@ -34,8 +35,8 @@ class LoginUserService {
                             onResult("OK")
                         }
                         else {
-                            Log.d("LoginUserService", "404 response")
-                            onResult("404")
+                            Log.d("LoginUserService", response.code().toString())
+                            onResult(response.code().toString())
                         }
                     }
                 }

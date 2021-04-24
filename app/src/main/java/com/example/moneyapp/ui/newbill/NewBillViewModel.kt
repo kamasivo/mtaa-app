@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.R
-import com.example.moneyapp.api.models.Bill
 import com.example.moneyapp.api.services.PostBillService
 
 class NewBillViewModel() : ViewModel() {
@@ -19,7 +18,7 @@ class NewBillViewModel() : ViewModel() {
         Log.d("NewBillViewModel", "newBill initiated");
         val apiService = PostBillService()
 
-        val billInfo = Bill(
+        val billInfo = newBill(
                 name = name,
                 incomePercents = 123,
                 description = description,
