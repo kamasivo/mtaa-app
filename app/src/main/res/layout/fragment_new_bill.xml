@@ -72,7 +72,6 @@
         android:layout_marginTop="92dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -84,7 +83,6 @@
         android:layout_marginLeft="52dp"
         android:ems="10"
         android:inputType="number"
-        android:text="Percents"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -96,7 +94,6 @@
         android:layout_marginLeft="84dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Describe"
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/incomePercents" />
 
@@ -119,7 +116,6 @@
         android:layout_marginLeft="88dp"
         android:ems="10"
         android:inputType="number"
-        android:text="123"
         app:layout_constraintStart_toEndOf="@+id/textView22"
         app:layout_constraintTop_toBottomOf="@+id/description" />
 

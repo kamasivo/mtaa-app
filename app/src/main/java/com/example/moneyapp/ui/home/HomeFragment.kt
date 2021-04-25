@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moneyapp.databinding.FragmentHomeBinding
+import com.example.moneyapp.ui.BillRecyclerAdapter
 
 class HomeFragment : Fragment() {
 
@@ -15,6 +17,8 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+//    private lateinit var billAdapter: BillRecyclerAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -25,16 +29,22 @@ class HomeFragment : Fragment() {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         val view = binding.root
         return view
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val text = binding.textHome
-
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            text.text = it
-        })
 
         homeViewModel.loadBills()
 
     }
+
+//    private fun initRecyclerView(){
+//
+//        recycler_view.apply{
+//            layoutManager = LinearLayoutManager(this@MainActivity)
+//            addItemDecoration(topSpacingDecorator)
+//            billAdapter = BillRecyclerAdapter()
+//            adapter = billAdapter
+//        }
+//    }
 }

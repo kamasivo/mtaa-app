@@ -6,5 +6,5 @@ import com.google.gson.annotations.SerializedName
 data class BillsArray (
         @SerializedName("bills")
         @Expose
-        private val bills: List<Bill>
+        public val bills: List<Bill>
 )

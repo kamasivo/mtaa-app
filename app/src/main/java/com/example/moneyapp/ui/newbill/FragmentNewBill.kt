@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +11,11 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.StringRes
-import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.moneyapp.NavigationActivity
 import com.example.moneyapp.databinding.FragmentNewBillBinding
-
 
 
 class NewBill : Fragment() {
@@ -77,49 +74,105 @@ class NewBill : Fragment() {
             if (newBillResult.error != null) {
                 showNewBillFailed(newBillResult.error)
             }
-            if (newBillResult.success) {
-                Log.d("FragmentNewBillScreen", "Going to main screen")
-                updateUiWithBill()
-                //                setResult(Activity.RESULT_OK)
-                //                finish()
-            }
+//            if (newBillResult.success) {
+//                Log.d("FragmentNewBillScreen", "Going to main screen")
+//                updateUiWithBill()
+//                //                setResult(Activity.RESULT_OK)
+//                //                finish()
+//            }
 
         })
 
         name.afterTextChanged {
+            var incPercent = 0
+            var totalSum = 0
+            try {
+                incPercent = incomePercents.text.toString().toInt()
+            } catch (e: NumberFormatException) {
+                // handle the exception
+                incPercent = 0
+            }
+            try {
+                totalSum = sum.text.toString().toInt()
+            } catch (e: NumberFormatException) {
+                // handle the exception
+                totalSum = 0
+            }
             model.newBillDataChanged(
-                    name.text.toString(),
-                    incomePercents.text.toString().toInt(),
-                    description.text.toString(),
-                    sum.text.toString().toInt()
+                name.text.toString(),
+                incPercent,
+                description.text.toString(),
+                totalSum
             )
         }
 
         incomePercents.afterTextChanged {
+            var incPercent = 0
+            var totalSum = 0
+            try {
+                incPercent = incomePercents.text.toString().toInt()
+            } catch (e: NumberFormatException) {
+                // handle the exception
+                incPercent = 0
+            }
+            try {
+                totalSum = sum.text.toString().toInt()
+            } catch (e: NumberFormatException) {
+                // handle the exception
+                totalSum = 0
+            }
             model.newBillDataChanged(
-                    name.text.toString(),
-                    incomePercents.text.toString().toInt(),
-                    description.text.toString(),
-                    sum.text.toString().toInt()
+                name.text.toString(),
+                incPercent,
+                description.text.toString(),
+                totalSum
             )
         }
 
         description.afterTextChanged {
+            var incPercent = 0
+            var totalSum = 0
+            try {
+                incPercent = incomePercents.text.toString().toInt()
+            } catch (e: NumberFormatException) {
+                // handle the exception
+                incPercent = 0
+            }
+            try {
+                totalSum = sum.text.toString().toInt()
+            } catch (e: NumberFormatException) {
+                // handle the exception
+                totalSum = 0
+            }
             model.newBillDataChanged(
                     name.text.toString(),
-                    incomePercents.text.toString().toInt(),
+                    incPercent,
                     description.text.toString(),
-                    sum.text.toString().toInt()
+                    totalSum
             )
         }
 
         sum.apply {
             afterTextChanged {
+                var incPercent = 0
+                var totalSum = 0
+                try {
+                    incPercent = incomePercents.text.toString().toInt()
+                } catch (e: NumberFormatException) {
+                    // handle the exception
+                    incPercent = 0
+                }
+                try {
+                    totalSum = sum.text.toString().toInt()
+                } catch (e: NumberFormatException) {
+                    // handle the exception
+                    totalSum = 0
+                }
                 model.newBillDataChanged(
                         name.text.toString(),
-                        incomePercents.text.toString().toInt(),
+                        incPercent,
                         description.text.toString(),
-                        sum.text.toString().toInt()
+                        totalSum
                 )
             }
 
@@ -137,8 +190,22 @@ class NewBill : Fragment() {
             }
 
             create.setOnClickListener {
+                var incPercent = 0
+                var totalSum = 0
+                try {
+                    incPercent = incomePercents.text.toString().toInt()
+                } catch (e: NumberFormatException) {
+                    // handle the exception
+                    incPercent = 0
+                }
+                try {
+                    totalSum = sum.text.toString().toInt()
+                } catch (e: NumberFormatException) {
+                    // handle the exception
+                    totalSum = 0
+                }
                 loading.visibility = View.VISIBLE
-                model.newBill(name.text.toString(), incomePercents.text.toString().toInt(), description.text.toString(), sum.text.toString().toInt())
+                model.newBill(name.text.toString(), incPercent, description.text.toString(), totalSum)
             }
         }
     }
