@@ -25,10 +25,6 @@ class FragmentLoginScreen : Fragment() {
 
     private val binding get() = _binding!!
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -107,7 +103,7 @@ class FragmentLoginScreen : Fragment() {
             }
 
             login.setOnClickListener {
-                updateUiWithUser()
+//                updateUiWithUser()
                 loading.visibility = View.VISIBLE
                 model.login(username.text.toString(), password.text.toString())
             }

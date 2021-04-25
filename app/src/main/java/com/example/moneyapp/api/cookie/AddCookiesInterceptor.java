@@ -44,6 +44,7 @@ public class AddCookiesInterceptor implements Interceptor {
         */
 
         for (String cookie : preferences) {
+            Log.d("cookie", cookie);
             builder.addHeader("Cookie", cookie);
         }
 
