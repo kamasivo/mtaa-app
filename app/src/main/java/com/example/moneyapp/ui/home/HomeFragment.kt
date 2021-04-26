@@ -14,6 +14,7 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    val adapter = BillAdapter()
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -23,21 +24,18 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         val view = binding.root
-        val adapter = BillAdapter()
-        binding.billsRecycler.adapter = adapter
+
         homeViewModel.listOfBills.observe(viewLifecycleOwner, Observer {
             it?.let {
+                binding.billsRecycler.adapter = adapter
                 adapter.data = it
-                Log.d("HomeFragment", adapter.data.toString())
+                Log.d("HomeFragment -> adapter", adapter.data.toString())
             }
         })
         return view
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         homeViewModel.loadBills()
-
     }
 }

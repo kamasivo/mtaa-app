@@ -24,9 +24,9 @@ class BillUserService {
                     override fun onResponse(call: Call<BillsArray>, response: Response<BillsArray>) {
                         Log.d("BillUserService", response.toString())
                         if(response.isSuccessful) {
-                            Log.d("BillUserService", response.body().toString())
+//                            Log.d("BillUserService", response.body().toString())
                             val bills = response.body()
-                            Log.d("BillUserService", bills.toString())
+//                            Log.d("BillUserService", bills.toString())
                             onResult(bills)
                         }
                         else {
