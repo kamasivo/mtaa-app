@@ -80,12 +80,10 @@ class NewBillFragment : Fragment() {
             if (newBillResult.error != null) {
                 showNewBillFailed(newBillResult.error)
             }
-//            if (newBillResult.success) {
-//                Log.d("FragmentNewBillScreen", "Going to main screen")
-//                updateUiWithBill()
-//                //                setResult(Activity.RESULT_OK)
-//                //                finish()
-//            }
+            if (newBillResult.success) {
+                val navController = Navigation.findNavController(view)
+                navController.navigate(R.id.newBill_to_home)
+            }
 
         })
 
@@ -130,8 +128,6 @@ class NewBillFragment : Fragment() {
                 }
                 loading.visibility = View.VISIBLE
                 model.newBill(name.text.toString(), incPercent, description.text.toString(), totalSum)
-                val navController = Navigation.findNavController(view)
-                navController.navigate(R.id.newBill_to_home)
             }
 //        }
     }
@@ -139,7 +135,7 @@ class NewBillFragment : Fragment() {
 
 
 
-    private fun showNewBillFailed(@StringRes errorString: Int) {
+    private fun showNewBillFailed(errorString: String) {
         Toast.makeText(this.context, errorString, Toast.LENGTH_SHORT).show()
     }
 }

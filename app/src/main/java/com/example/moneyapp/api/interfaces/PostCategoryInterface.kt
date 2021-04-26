@@ -1,14 +1,14 @@
 package com.example.moneyapp.api.interfaces
 
-import com.example.moneyapp.api.models.NewBill
+import com.example.moneyapp.api.models.NewCategory
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
-interface PostBillInterface {
+interface PostCategoryInterface {
     @Headers("Content-Type: application/json")
-    @POST("bill")
-    fun addBill(@Body userData: NewBill): Call<JsonObject>
+    @POST("category/expenditure")
+    fun addCategory(@Body userData: NewCategory): Call<JsonObject>
 }

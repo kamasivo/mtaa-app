@@ -13,7 +13,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="52dp"
-        android:text="Pridať peniaze na účet"
+        android:text="@string/prida_peniaze_na_et"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +24,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
-        android:text="Zdroj príjmu"
+        android:text="@string/zdroj_pr_jmu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -35,7 +35,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="32dp"
-        android:text="Suma"
+        android:text="@string/suma"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -46,12 +46,12 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="32dp"
-        android:text="Účet"
+        android:text="@string/et"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName6"
+        android:id="@+id/nameType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -64,19 +64,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName7"
+        android:id="@+id/sumIncome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
         android:layout_marginLeft="88dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+        app:layout_constraintTop_toBottomOf="@+id/nameType" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName8"
+        android:id="@+id/sumExpenditure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="94dp"
@@ -85,18 +84,33 @@
         android:inputType="textPersonName"
         android:text="Name"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
+        app:layout_constraintTop_toBottomOf="@+id/sumIncome" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/createIncome"
         android:layout_width="197dp"
         android:layout_height="55dp"
         android:layout_marginBottom="376dp"
-        android:text="Pridať"
+        android:text="@string/prida"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName8"
+        app:layout_constraintTop_toBottomOf="@+id/sumExpenditure"
         app:layout_constraintVertical_bias="0.913" />
 
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/name"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

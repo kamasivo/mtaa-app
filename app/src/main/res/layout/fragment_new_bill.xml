@@ -14,7 +14,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="44dp"
         android:layout_marginTop="52dp"
-        android:text="Vytvoriť účet"
+        android:text="@string/vytvori_et"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +25,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="44dp"
         android:layout_marginTop="32dp"
-        android:text="Názov účtu"
+        android:text="@string/n_zov_tu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -36,7 +36,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
-        android:text="% z prijmu"
+        android:text="@string/z_prijmu"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -47,7 +47,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="32dp"
-        android:text="Popis"
+        android:text="@string/popis"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -55,7 +55,7 @@
         android:id="@+id/create"
         android:layout_width="192dp"
         android:layout_height="46dp"
-        android:text="Vytvoriť účet"
+        android:text="@string/vytvori_et"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -104,7 +104,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="32dp"
-        android:text="Sum"
+        android:text="@string/suma"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
