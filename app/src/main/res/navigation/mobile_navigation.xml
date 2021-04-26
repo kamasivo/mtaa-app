@@ -8,11 +8,7 @@
         android:id="@+id/nav_bill"
         android:name="com.example.moneyapp.ui.bill.FragmentBill"
         android:label="fragment_bill"
-        tools:layout="@layout/fragment_bill" >
-        <action
-            android:id="@+id/action_bill_to_updateTransaction"
-            app:destination="@id/nav_updateTransaction" />
-    </fragment>
+        tools:layout="@layout/fragment_bill" />
     <fragment
         android:id="@+id/nav_updateTransaction"
         android:name="com.example.moneyapp.ui.updatetransaction.UpdateTransaction"
@@ -35,9 +31,13 @@
         tools:layout="@layout/fragment_type" />
     <fragment
         android:id="@+id/nav_newBill"
-        android:name="com.example.moneyapp.ui.newbill.NewBill"
+        android:name="com.example.moneyapp.ui.newbill.NewBillFragment"
         android:label="fragment_new_bill"
-        tools:layout="@layout/fragment_new_bill" />
+        tools:layout="@layout/fragment_new_bill" >
+        <action
+            android:id="@+id/newBill_to_home"
+            app:destination="@id/nav_home" />
+    </fragment>
     <fragment
         android:id="@+id/nav_createExpenditure"
         android:name="com.example.moneyapp.ui.createexpenditure.CreateExpenditure"
@@ -53,35 +53,35 @@
         android:name="com.example.moneyapp.ui.splitincome.SplitIncome"
         android:label="fragment_split_income"
         tools:layout="@layout/fragment_split_income" >
-        <action
-            android:id="@+id/action_splitIncome_to_createIncome"
-            app:destination="@id/nav_createIncome" />
+<!--        <action-->
+<!--            android:id="@+id/action_splitIncome_to_createIncome"-->
+<!--            app:destination="@id/nav_createIncome" />-->
     </fragment>
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.moneyapp.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/to_bill"
-            app:destination="@id/nav_bill" />
-        <action
-            android:id="@+id/to_profile"
-            app:destination="@id/nav_profile" />
-        <action
-            android:id="@+id/to_category"
-            app:destination="@id/nav_category" />
-        <action
-            android:id="@+id/to_type"
-            app:destination="@id/nav_type" />
-        <action
-            android:id="@+id/to_newBill"
-            app:destination="@id/nav_newBill" />
-        <action
-            android:id="@+id/to_createExpenditure"
-            app:destination="@id/nav_createExpenditure" />
-        <action
-            android:id="@+id/to_splitIncome"
-            app:destination="@id/nav_splitIncome" />
+<!--        <action-->
+<!--            android:id="@+id/to_bill"-->
+<!--            app:destination="@id/nav_bill" />-->
+<!--        <action-->
+<!--            android:id="@+id/to_profile"-->
+<!--            app:destination="@id/nav_profile" />-->
+<!--        <action-->
+<!--            android:id="@+id/to_category"-->
+<!--            app:destination="@id/nav_category" />-->
+<!--        <action-->
+<!--            android:id="@+id/to_type"-->
+<!--            app:destination="@id/nav_type" />-->
+<!--        <action-->
+<!--            android:id="@+id/to_newBill"-->
+<!--            app:destination="@id/nav_newBill" />-->
+<!--        <action-->
+<!--            android:id="@+id/to_createExpenditure"-->
+<!--            app:destination="@id/nav_createExpenditure" />-->
+<!--        <action-->
+<!--            android:id="@+id/to_splitIncome"-->
+<!--            app:destination="@id/nav_splitIncome" />-->
     </fragment>
 </navigation>

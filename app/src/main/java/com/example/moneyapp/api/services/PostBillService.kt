@@ -3,6 +3,7 @@ package com.example.moneyapp.api.services
 import android.util.Log
 import com.example.moneyapp.api.ServiceBuilder
 import com.example.moneyapp.api.interfaces.PostBillInterface
+import com.example.moneyapp.api.models.NewBill
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import org.json.JSONObject
@@ -12,7 +13,7 @@ import retrofit2.Response
 
 
 class PostBillService {
-    fun addBill(userData: Unit, onResult: (String?) -> Unit){
+    fun addBill(userData: NewBill, onResult: (String?) -> Unit){
         Log.d("PostBillService", "Posielam request")
         val service_builder = ServiceBuilder()
         val retrofit = service_builder.buildService(PostBillInterface::class.java)

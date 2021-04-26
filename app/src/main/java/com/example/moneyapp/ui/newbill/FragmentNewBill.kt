@@ -14,11 +14,13 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.example.moneyapp.NavigationActivity
+import com.example.moneyapp.R
 import com.example.moneyapp.databinding.FragmentNewBillBinding
 
 
-class NewBill : Fragment() {
+class NewBillFragment : Fragment() {
     private var _binding: FragmentNewBillBinding? = null
 
     private val binding get() = _binding!!
@@ -50,10 +52,14 @@ class NewBill : Fragment() {
 
         val model: NewBillViewModel by viewModels()
 
+
         model.newBillFormState.observe(viewLifecycleOwner, Observer {
             val newBillState = it ?: return@Observer
 
             // disable login button unless both username / password is valid
+            create.isEnabled = newBillState.isDataValid
+
+
             create.isEnabled = newBillState.isDataValid
 
             if (newBillState.nameError != null) {
@@ -106,88 +112,6 @@ class NewBill : Fragment() {
             )
         }
 
-        incomePercents.afterTextChanged {
-            var incPercent = 0
-            var totalSum = 0
-            try {
-                incPercent = incomePercents.text.toString().toInt()
-            } catch (e: NumberFormatException) {
-                // handle the exception
-                incPercent = 0
-            }
-            try {
-                totalSum = sum.text.toString().toInt()
-            } catch (e: NumberFormatException) {
-                // handle the exception
-                totalSum = 0
-            }
-            model.newBillDataChanged(
-                name.text.toString(),
-                incPercent,
-                description.text.toString(),
-                totalSum
-            )
-        }
-
-        description.afterTextChanged {
-            var incPercent = 0
-            var totalSum = 0
-            try {
-                incPercent = incomePercents.text.toString().toInt()
-            } catch (e: NumberFormatException) {
-                // handle the exception
-                incPercent = 0
-            }
-            try {
-                totalSum = sum.text.toString().toInt()
-            } catch (e: NumberFormatException) {
-                // handle the exception
-                totalSum = 0
-            }
-            model.newBillDataChanged(
-                    name.text.toString(),
-                    incPercent,
-                    description.text.toString(),
-                    totalSum
-            )
-        }
-
-        sum.apply {
-            afterTextChanged {
-                var incPercent = 0
-                var totalSum = 0
-                try {
-                    incPercent = incomePercents.text.toString().toInt()
-                } catch (e: NumberFormatException) {
-                    // handle the exception
-                    incPercent = 0
-                }
-                try {
-                    totalSum = sum.text.toString().toInt()
-                } catch (e: NumberFormatException) {
-                    // handle the exception
-                    totalSum = 0
-                }
-                model.newBillDataChanged(
-                        name.text.toString(),
-                        incPercent,
-                        description.text.toString(),
-                        totalSum
-                )
-            }
-
-            setOnEditorActionListener { _, actionId, _ ->
-                when (actionId) {
-                    EditorInfo.IME_ACTION_DONE ->
-                        model.newBill(
-                                name.text.toString(),
-                                incomePercents.text.toString().toInt(),
-                                description.text.toString(),
-                                sum.text.toString().toInt()
-                        )
-                }
-                false
-            }
 
             create.setOnClickListener {
                 var incPercent = 0
@@ -206,18 +130,14 @@ class NewBill : Fragment() {
                 }
                 loading.visibility = View.VISIBLE
                 model.newBill(name.text.toString(), incPercent, description.text.toString(), totalSum)
+                val navController = Navigation.findNavController(view)
+                navController.navigate(R.id.newBill_to_home)
             }
-        }
+//        }
     }
 
 
 
-
-    private fun updateUiWithBill() {
-        // redirect to main page
-        val ide = Intent(this.context, NavigationActivity::class.java)
-        startActivity(ide)
-    }
 
     private fun showNewBillFailed(@StringRes errorString: Int) {
         Toast.makeText(this.context, errorString, Toast.LENGTH_SHORT).show()
