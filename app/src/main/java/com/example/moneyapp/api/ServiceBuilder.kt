@@ -16,10 +16,10 @@ class ServiceBuilder {
 //    private val client = OkHttpClient.Builder().build()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://gamma-bank.herokuapp.com/") // change this IP for testing by your actual machine IP
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(client)
-        .build()
+            .baseUrl("https://gamma-bank.herokuapp.com/") // change this IP for testing by your actual machine IP
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
     fun <T> buildService(service: Class<T>): T{
         return retrofit.create(service)
