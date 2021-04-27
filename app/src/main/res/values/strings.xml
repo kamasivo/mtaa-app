@@ -64,4 +64,5 @@
     <string name="upravi">Change</string>
     <string name="vymaza">Delete</string>
     <string name="account_name">Názov účtu</string>
+    <string name="category_in_bill">Category in bill:</string>
 </resources>
