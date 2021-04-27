@@ -55,7 +55,7 @@ class CreateIncomeViewModel() : ViewModel() {
 
         apiService.getbill {
             if (it != null) {
-                Log.d("HomeViewModel", "bills loaded")
+                Log.d("CreateIncomeView", "bills loaded")
                 listOfBills.value = it.bills
             }
         }

@@ -26,5 +26,8 @@
         <item
             android:id="@+id/nav_splitIncome"
             android:title="Split income" />
+        <item
+            android:id="@+id/nav_createIncome"
+            android:title="Creat income" />
     </group>
 </menu>

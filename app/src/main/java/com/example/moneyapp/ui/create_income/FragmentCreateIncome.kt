@@ -33,10 +33,11 @@ class CreateIncome : Fragment(){
         _binding = FragmentCreateIncomeBinding.inflate(inflater, container, false)
         model = ViewModelProvider(this).get(CreateIncomeViewModel::class.java)
         val view = binding.root
+        model.loadBills()
 
         model.listOfBills.observe(viewLifecycleOwner, Observer {
             it?.let {
-
+                Log.d("FragmentCreateIncome", it.toString())
                 val items: ArrayList<String> = ArrayList()
 
                 for (i in it) {
