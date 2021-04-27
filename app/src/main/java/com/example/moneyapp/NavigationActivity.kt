@@ -14,7 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.moneyapp.api.services.LogoutService
+import com.example.moneyapp.api.services.UserService
 import com.example.moneyapp.ui.login.LoginActivity
 import com.google.android.material.navigation.NavigationView
 
@@ -63,7 +63,7 @@ class NavigationActivity : AppCompatActivity() {
         R.id.action_logout -> {
             Log.d("logout", "initiated")
 
-            val apiService = LogoutService()
+            val apiService = UserService()
 
             apiService.logoutUser {
                 if (it != null) {
@@ -80,9 +80,6 @@ class NavigationActivity : AppCompatActivity() {
             true
         }
 
-        R.id.action_settings -> {
-            true
-        }
 
         else -> {
             super.onOptionsItemSelected(item)

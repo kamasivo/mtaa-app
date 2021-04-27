@@ -9,25 +9,25 @@
             android:id="@+id/nav_home"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_profile"
-            android:title="Profile" />
-        <item
-            android:id="@+id/nav_category"
-            android:title="Category" />
-        <item
-            android:id="@+id/nav_type"
-            android:title="Type" />
-        <item
-            android:id="@+id/nav_newBill"
-            android:title="Create new bill" />
-        <item
             android:id="@+id/nav_createExpenditure"
-            android:title="Create expenditure" />
+            android:title="@string/add_exp" />
         <item
             android:id="@+id/nav_splitIncome"
-            android:title="Split income" />
+            android:title="@string/split_income" />
         <item
             android:id="@+id/nav_createIncome"
-            android:title="Creat income" />
+            android:title="@string/creat_income" />
+        <item
+            android:id="@+id/nav_newBill"
+            android:title="@string/create_new_bill" />
+        <item
+            android:id="@+id/nav_profile"
+            android:title="@string/profile" />
+        <item
+            android:id="@+id/nav_category"
+            android:title="@string/expenditure" />
+        <item
+            android:id="@+id/nav_type"
+            android:title="@string/income_category" />
     </group>
 </menu>

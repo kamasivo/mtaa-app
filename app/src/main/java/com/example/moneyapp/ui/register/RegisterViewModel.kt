@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.R
 import com.example.moneyapp.api.models.User
-import com.example.moneyapp.api.services.PostUserService
+import com.example.moneyapp.api.services.UserService
 
 class RegisterViewModel() : ViewModel() {
     private val _registerForm = MutableLiveData<RegisterFormState>()
@@ -17,7 +17,7 @@ class RegisterViewModel() : ViewModel() {
 
     fun register(username: String, password: String, email: String) {
         Log.d("RegisterViewModel", "register initiated");
-        val apiService = PostUserService()
+        val apiService = UserService()
 
         val userInfo = User(
                 fullName = username,
@@ -48,7 +48,6 @@ class RegisterViewModel() : ViewModel() {
         }
     }
 
-    // A placeholder username validation check
     private fun isEmailValid(email: String): Boolean {
         if(email.contains('@') && email.length > 4) {
             return true
@@ -56,7 +55,6 @@ class RegisterViewModel() : ViewModel() {
         return false
     }
 
-    // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
         return password.length > 4
     }

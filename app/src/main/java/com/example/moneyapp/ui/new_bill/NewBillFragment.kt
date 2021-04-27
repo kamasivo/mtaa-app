@@ -1,4 +1,4 @@
-package com.example.moneyapp.ui.newbill
+package com.example.moneyapp.ui.new_bill
 
 import android.os.Bundle
 import android.text.Editable
@@ -13,11 +13,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.example.moneyapp.R
-import com.example.moneyapp.databinding.FragmentNewBillBinding
+import com.example.moneyapp.databinding.CreateNewBillBinding
 
 
 class NewBillFragment : Fragment() {
-    private var _binding: FragmentNewBillBinding? = null
+    private var _binding: CreateNewBillBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -25,7 +25,7 @@ class NewBillFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentNewBillBinding.inflate(inflater, container, false)
+        _binding = CreateNewBillBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -77,25 +77,8 @@ class NewBillFragment : Fragment() {
         })
 
         name.afterTextChanged {
-            var incPercent = 0
-            var totalSum = 0
-            try {
-                incPercent = incomePercents.text.toString().toInt()
-            } catch (e: NumberFormatException) {
-                // handle the exception
-                incPercent = 0
-            }
-            try {
-                totalSum = sum.text.toString().toInt()
-            } catch (e: NumberFormatException) {
-                // handle the exception
-                totalSum = 0
-            }
             model.newBillDataChanged(
                 name.text.toString(),
-                incPercent,
-                description.text.toString(),
-                totalSum
             )
         }
 

@@ -14,12 +14,11 @@ class HomeViewModel : ViewModel() {
     fun loadBills() {
         val apiService = BillService()
 
-
         apiService.getbill {
-        if (it != null) {
-            Log.d("HomeViewModel", "bills loaded")
-            listOfBills.value = it.bills
+            if (it != null) {
+                Log.d("HomeViewModel", "bills loaded")
+                listOfBills.value = it.bills
+            }
         }
-    }
     }
 }

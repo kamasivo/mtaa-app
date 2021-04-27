@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.moneyapp.databinding.FragmentHomeBinding
+import com.example.moneyapp.databinding.HomeRecyclerBinding
 
 class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: HomeRecyclerBinding? = null
     private val binding get() = _binding!!
     val adapter = BillAdapter()
 
@@ -20,7 +20,7 @@ class HomeFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = HomeRecyclerBinding.inflate(inflater, container, false)
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         val view = binding.root
 
@@ -30,10 +30,11 @@ class HomeFragment : Fragment() {
                 adapter.data = it
             }
         })
+        homeViewModel.loadBills()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        homeViewModel.loadBills()
+//        homeViewModel.loadBills()
     }
 }

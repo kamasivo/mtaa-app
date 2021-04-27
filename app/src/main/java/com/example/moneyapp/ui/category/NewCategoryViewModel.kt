@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.moneyapp.R
 import com.example.moneyapp.api.models.NewCategory
 import com.example.moneyapp.api.services.CategoryService
 
@@ -33,18 +32,5 @@ class NewCategoryViewModel() : ViewModel() {
                 }
             }
         }
-    }
-
-    fun newCategoryDataChanged(name: String, incomePercents: Int, description: String, sum: Int) {
-        if (!isNameValid(name)) {
-            _newCategoryForm.value = NewCategoryFormState(nameError = R.string.invalid_name)
-        } else {
-            _newCategoryForm.value = NewCategoryFormState(isDataValid = true)
-        }
-    }
-
-
-    private fun isNameValid(username: String): Boolean {
-        return username.length > 1
     }
 }

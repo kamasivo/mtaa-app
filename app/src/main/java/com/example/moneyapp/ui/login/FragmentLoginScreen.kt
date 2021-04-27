@@ -18,10 +18,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.example.moneyapp.NavigationActivity
 import com.example.moneyapp.R
-import com.example.moneyapp.databinding.FragmentLoginScreenBinding
+import com.example.moneyapp.databinding.LoginScreenBinding
 
 class FragmentLoginScreen : Fragment() {
-    private var _binding: FragmentLoginScreenBinding? = null
+    private var _binding: LoginScreenBinding? = null
 
     private val binding get() = _binding!!
 
@@ -30,7 +30,7 @@ class FragmentLoginScreen : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentLoginScreenBinding.inflate(inflater, container, false)
+        _binding = LoginScreenBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -52,7 +52,6 @@ class FragmentLoginScreen : Fragment() {
         model.loginFormState.observe(viewLifecycleOwner, Observer {
             val loginState = it ?: return@Observer
 
-            // disable login button unless both username / password is valid
             login.isEnabled = loginState.isDataValid
             if (loginState.usernameError != null) {
                 username.error = getString(loginState.usernameError)
@@ -103,7 +102,6 @@ class FragmentLoginScreen : Fragment() {
             }
 
             login.setOnClickListener {
-//                updateUiWithUser()
                 loading.visibility = View.VISIBLE
                 model.login(username.text.toString(), password.text.toString())
             }

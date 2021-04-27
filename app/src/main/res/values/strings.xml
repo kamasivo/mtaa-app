@@ -65,4 +65,12 @@
     <string name="vymaza">Delete</string>
     <string name="account_name">Názov účtu</string>
     <string name="category_in_bill">Category in bill:</string>
+    <string name="profile">Profile</string>
+    <string name="income_category">Create income cateogry</string>
+    <string name="expenditure">Create expenditure category</string>
+    <string name="create_new_bill">Create new bill</string>
+    <string name="add_exp">Add expenditure</string>
+    <string name="split_income">Split income</string>
+    <string name="creat_income">Add income</string>
+    <string name="logout">Logout</string>
 </resources>

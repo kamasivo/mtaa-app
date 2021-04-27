@@ -16,23 +16,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.moneyapp.NavigationActivity
-import com.example.moneyapp.databinding.FragmentRegisterScreenBinding
+import com.example.moneyapp.databinding.RegisterScreenBinding
 
 class FragmentRegisterScreen : Fragment() {
-    private var _binding: FragmentRegisterScreenBinding? = null
+    private var _binding: RegisterScreenBinding? = null
 
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentRegisterScreenBinding.inflate(inflater, container, false)
+        _binding = RegisterScreenBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -72,9 +68,8 @@ class FragmentRegisterScreen : Fragment() {
             }
             if (registerResult.success) {
                 Log.d("FragmentRegisterScreen", "Going to main screen")
-                updateUiWithUser()
-//                setResult(Activity.RESULT_OK)
-//                finish()
+                val ide = Intent(this.context, NavigationActivity::class.java)
+                startActivity(ide)
             }
 
         })
@@ -122,11 +117,6 @@ class FragmentRegisterScreen : Fragment() {
             }
 
         }
-    }
-    private fun updateUiWithUser() {
-        // redirect to main page
-        val ide = Intent(this.context, NavigationActivity::class.java)
-        startActivity(ide)
     }
 
     private fun showRegisterFailed(@StringRes errorString: Int) {

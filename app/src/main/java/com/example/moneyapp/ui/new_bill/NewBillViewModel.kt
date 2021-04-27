@@ -1,4 +1,4 @@
-package com.example.moneyapp.ui.newbill
+package com.example.moneyapp.ui.new_bill
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -37,7 +37,7 @@ class NewBillViewModel() : ViewModel() {
         }
     }
 
-    fun newBillDataChanged(name: String, incomePercents: Int, description: String, sum: Int) {
+    fun newBillDataChanged(name: String) {
         if (!isNameValid(name)) {
             _newBillForm.value = NewBillFormState(nameError = R.string.invalid_name)
         } else {

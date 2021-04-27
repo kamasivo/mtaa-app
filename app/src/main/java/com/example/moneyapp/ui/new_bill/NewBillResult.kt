@@ -1,4 +1,4 @@
-package com.example.moneyapp.ui.newbill
+package com.example.moneyapp.ui.new_bill
 
 data class NewBillResult(
     val success: Boolean = false,

@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.R
 import com.example.moneyapp.api.models.UserLogin
-import com.example.moneyapp.api.services.LoginUserService
+import com.example.moneyapp.api.services.UserService
 
 class LoginViewModel() : ViewModel() {
 
@@ -19,7 +19,7 @@ class LoginViewModel() : ViewModel() {
     fun login(username: String, password: String) {
         Log.d("LoginActivity", "login initiated");
 
-        val apiService = LoginUserService()
+        val apiService = UserService()
 
         val userInfo = UserLogin(
                 emailAddress = username,
