@@ -13,11 +13,11 @@ import retrofit2.Response
 
 
 class PostIncomeService {
-    fun addIncome(userData: NewIncome, onResult: (String?) -> Unit){
+    fun addIncome(income: NewIncome, onResult: (String?) -> Unit){
         Log.d("PostIncomeService", "Posielam request")
         val service_builder = ServiceBuilder()
         val retrofit = service_builder.buildService(PostIncomeInterface::class.java)
-        retrofit.addIncome(userData).enqueue(
+        retrofit.addIncome(income).enqueue(
                 object : Callback<JsonObject> {
                     override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                         Log.d("PostIncomeService", "failed to response")
@@ -31,8 +31,7 @@ class PostIncomeService {
                             val jsonObject = JSONObject(Gson().toJson(response.body()))
                             Log.d("PostIncomeService", jsonObject.toString())
                             val id = jsonObject.getString("result")
-                            Log.d("PostIncomeService", id)
-                            if(id != null) {
+                            if(id == "success") {
                                 onResult("OK")
                             }
                         }
