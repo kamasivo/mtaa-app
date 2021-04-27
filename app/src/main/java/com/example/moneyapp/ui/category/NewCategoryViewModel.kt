@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.R
 import com.example.moneyapp.api.models.NewCategory
-import com.example.moneyapp.api.services.PostCategoryService
+import com.example.moneyapp.api.services.CategoryService
 
 class NewCategoryViewModel() : ViewModel() {
     private val _newCategoryForm = MutableLiveData<NewCategoryFormState>()
@@ -17,7 +17,7 @@ class NewCategoryViewModel() : ViewModel() {
 
     fun newCategory(name: String, billId: Int) {
         Log.d("NewCategoryViewModel", "newCategory initiated");
-        val apiService = PostCategoryService()
+        val apiService = CategoryService()
 
         val categoryInfo = NewCategory(
             name = name,

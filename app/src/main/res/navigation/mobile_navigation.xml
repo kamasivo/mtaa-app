@@ -52,7 +52,12 @@
         android:id="@+id/nav_createIncome"
         android:name="com.example.moneyapp.ui.createincome.CreateIncome"
         android:label="Create income category"
-        tools:layout="@layout/fragment_create_income" />
+        tools:layout="@layout/fragment_create_income"
+        >
+        <action
+            android:id="@+id/create_income_to_home"
+            app:destination="@id/nav_home" />
+    </fragment>
     <fragment
         android:id="@+id/nav_splitIncome"
         android:name="com.example.moneyapp.ui.splitincome.SplitIncome"

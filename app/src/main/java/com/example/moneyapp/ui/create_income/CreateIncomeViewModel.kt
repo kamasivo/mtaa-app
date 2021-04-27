@@ -5,8 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.api.models.Bill
+import com.example.moneyapp.api.models.Category
 import com.example.moneyapp.api.models.NewIncome
 import com.example.moneyapp.api.services.BillService
+import com.example.moneyapp.api.services.CategoryService
 import com.example.moneyapp.api.services.PostIncomeService
 
 class CreateIncomeViewModel() : ViewModel() {
@@ -20,8 +22,11 @@ class CreateIncomeViewModel() : ViewModel() {
         MutableLiveData<List<Bill>>()
     }
 
+    val listOfCategories: MutableLiveData<List<Category>> by lazy {
+        MutableLiveData<List<Category>>()
+    }
+
     fun createIncome(sum: Int, billId: Int, categoryId: Int) {
-        Log.d("CreateIncomeViewModel", "createIncome initiated");
         val apiService = PostIncomeService()
 
         val incomeInfo = NewIncome(
@@ -41,17 +46,8 @@ class CreateIncomeViewModel() : ViewModel() {
         }
     }
 
-    fun createIncomeDataChanged(sum: Int) {
-        if (!isNameValid(sum)) {
-            _createIncomeForm.value = CreateIncomeFormState(sumError = "Invalid sum")
-        } else {
-            _createIncomeForm.value = CreateIncomeFormState(isDataValid = true)
-        }
-    }
-
     fun loadBills() {
         val apiService = BillService()
-
 
         apiService.getbill {
             if (it != null) {
@@ -61,8 +57,14 @@ class CreateIncomeViewModel() : ViewModel() {
         }
     }
 
+    fun loadCategories() {
+        val apiService = CategoryService()
 
-    private fun isNameValid(incomeSum: Int): Boolean {
-        return incomeSum > 0
+        apiService.getIncomeCategories() {
+            if (it != null) {
+                Log.d("CreateIncomeView", "categories loaded")
+                listOfCategories.value = it.bills
+            }
+        }
     }
 }
