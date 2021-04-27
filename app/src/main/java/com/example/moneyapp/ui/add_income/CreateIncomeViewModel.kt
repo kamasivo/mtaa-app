@@ -12,9 +12,6 @@ import com.example.moneyapp.api.services.CategoryService
 import com.example.moneyapp.api.services.TransactionService
 
 class CreateIncomeViewModel() : ViewModel() {
-    private val _createIncomeForm = MutableLiveData<CreateIncomeFormState>()
-    val createIncomeFormState: LiveData<CreateIncomeFormState> = _createIncomeForm
-
     private val _createIncomeResult = MutableLiveData<CreateIncomeResult>()
     val createIncomeResult: LiveData<CreateIncomeResult> = _createIncomeResult
 

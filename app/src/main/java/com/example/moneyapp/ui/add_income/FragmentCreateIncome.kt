@@ -91,18 +91,6 @@ class CreateIncome : Fragment(){
 
         val model: CreateIncomeViewModel by viewModels()
 
-        model.createIncomeFormState.observe(viewLifecycleOwner, Observer {
-            val createIncomeState = it ?: return@Observer
-
-            // disable login button unless both username / password is valid
-            create.isEnabled = createIncomeState.isDataValid
-
-            if (createIncomeState.sumError != null) {
-                sum.error = createIncomeState.sumError
-            }
-
-        })
-
         model.createIncomeResult.observe(viewLifecycleOwner, Observer {
             val createIncomeResult = it ?: return@Observer
 
