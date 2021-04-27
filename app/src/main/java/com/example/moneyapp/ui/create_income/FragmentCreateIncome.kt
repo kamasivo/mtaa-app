@@ -3,12 +3,12 @@ package com.example.moneyapp.ui.createincome
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.moneyapp.databinding.FragmentCreateIncomeBinding
@@ -50,7 +50,7 @@ class CreateIncome : Fragment() {
             create.isEnabled = createIncomeState.isDataValid
 
             if (createIncomeState.sumError != null) {
-                sum.error = getString(createIncomeState.sumError)
+                sum.error = createIncomeState.sumError
             }
 
         })
@@ -76,7 +76,7 @@ class CreateIncome : Fragment() {
 
         create.setOnClickListener {
             loading.visibility = View.VISIBLE
-            model.createIncome(sum.text.toString().toInt())
+//            model.createIncome(sum.text.toString().toInt())
         }
 //        }
     }

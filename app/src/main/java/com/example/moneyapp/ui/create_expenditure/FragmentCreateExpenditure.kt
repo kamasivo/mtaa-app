@@ -3,12 +3,12 @@ package com.example.moneyapp.ui.createexpenditure
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.moneyapp.databinding.FragmentCreateExpenditureBinding
@@ -49,9 +49,9 @@ class CreateExpenditure : Fragment() {
 
             create.isEnabled = createExpenditureState.isDataValid
 
-            if (createExpenditureState.sumError != null) {
-                sum.error = getString(createExpenditureState.sumError)
-            }
+//            if (createExpenditureState.sumError != null) {
+//                sum.error = createExpenditureState.sumError
+//            }
 
         })
 
@@ -67,16 +67,16 @@ class CreateExpenditure : Fragment() {
 
         })
 
-        sum.afterTextChanged {
-            model.createExpenditureDataChanged(
-                    sum.text.toString().toInt()
-            )
-        }
+//        sum.afterTextChanged {
+//            model.createExpenditureDataChanged(
+//                    sum.text.toString().toInt()
+//            )
+//        }
 
 
         create.setOnClickListener {
             loading.visibility = View.VISIBLE
-            model.createExpenditure(sum.text.toString().toInt())
+//            model.createExpenditure(sum.text.toString().toInt())
         }
 //        }
     }

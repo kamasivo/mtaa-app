@@ -1,4 +1,4 @@
-package com.example.moneyapp.ui.bill
+package com.example.moneyapp.ui.detail_bill
 
 import androidx.lifecycle.ViewModel
 

@@ -1,4 +1,4 @@
-package com.example.moneyapp.ui.bill
+package com.example.moneyapp.ui.detail_bill
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.moneyapp.R
 
-class FragmentBill : Fragment() {
+class DetailBillFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,7 +1,6 @@
 package com.example.moneyapp.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +28,7 @@ class HomeFragment : Fragment() {
             it?.let {
                 binding.billsRecycler.adapter = adapter
                 adapter.data = it
-                Log.d("HomeFragment -> adapter", adapter.data.toString())
+//                Log.d("HomeFragment -> adapter", adapter.data.toString())
             }
         })
         return view

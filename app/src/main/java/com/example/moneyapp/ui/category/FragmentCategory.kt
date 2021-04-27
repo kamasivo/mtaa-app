@@ -3,15 +3,14 @@ package com.example.moneyapp.ui.category
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.example.moneyapp.R
 import com.example.moneyapp.databinding.FragmentCategoryBinding
 
 
@@ -68,16 +67,16 @@ class Category : Fragment() {
 
         })
 
-        name.afterTextChanged {
-            model.newCategoryDataChanged(
-                    name.text.toString()
-            )
-        }
+//        name.afterTextChanged {
+//            model.newCategoryDataChanged(
+//                    name.text.toString()
+//            )
+//        }
 
 
         create.setOnClickListener {
             loading.visibility = View.VISIBLE
-            model.newCategory(name.text.toString())
+//            model.newCategory(name.text.toString())
         }
 //        }
     }
