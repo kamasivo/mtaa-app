@@ -14,7 +14,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="48dp"
         android:layout_marginTop="52dp"
-        android:text="Nickname"
+        android:text="@string/nickname"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +25,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="32dp"
-        android:text="Profilový obrázok"
+        android:text="@string/profilov_obr_zok"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="252dp"
-        android:text="Upraviť"
+        android:text="@string/upravi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9" />
@@ -70,7 +70,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="256dp"
-        android:text="Zmeniť heslo"
+        android:text="@string/zmeni_heslo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
@@ -81,7 +81,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="32dp"
-        android:text="Staré heslo"
+        android:text="@string/star_heslo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -92,7 +92,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="32dp"
-        android:text="Nové heslo"
+        android:text="@string/nov_heslo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -103,7 +103,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="32dp"
-        android:text="Zopakujte heslo"
+        android:text="@string/zopakujte_heslo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 

@@ -1,6 +1,6 @@
-package com.example.moneyapp.ui.newbill
+package com.example.moneyapp.ui.type
 
-data class NewBillResult(
+data class NewTypeResult(
     val success: Boolean = false,
     val error: String? = null
 )

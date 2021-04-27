@@ -31,7 +31,7 @@ class NewBillViewModel() : ViewModel() {
                 if (it == "OK") {
                     _newBillResult.value = NewBillResult(success = true)
                 } else {
-                    _newBillResult.value = NewBillResult(error = R.string.login_failed)
+                    _newBillResult.value = NewBillResult(error = it)
                 }
             }
         }

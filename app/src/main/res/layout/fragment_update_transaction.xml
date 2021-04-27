@@ -13,7 +13,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="44dp"
         android:layout_marginTop="52dp"
-        android:text="Úprava transakcie"
+        android:text="@string/prava_transakcie"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +24,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="52dp"
         android:layout_marginTop="32dp"
-        android:text="Účet"
+        android:text="@string/et"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -35,7 +35,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="32dp"
-        android:text="Kategória"
+        android:text="@string/kateg_ria"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -46,12 +46,12 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="32dp"
-        android:text="Suma"
+        android:text="@string/suma"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName6"
+        android:id="@+id/nameType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName7"
+        android:id="@+id/sumIncome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="68dp"
@@ -73,10 +73,10 @@
         android:inputType="textPersonName"
         android:text="jedlo"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+        app:layout_constraintTop_toBottomOf="@+id/nameType" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName8"
+        android:id="@+id/sumExpenditure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="93dp"
@@ -85,25 +85,25 @@
         android:inputType="textPersonName"
         android:text="123"
         app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
+        app:layout_constraintTop_toBottomOf="@+id/sumIncome" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/createIncome"
         android:layout_width="197dp"
         android:layout_height="55dp"
         android:layout_marginTop="64dp"
-        android:text="Upraviť"
+        android:text="@string/upravi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName8" />
+        app:layout_constraintTop_toBottomOf="@+id/sumExpenditure" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Vymazať"
+        android:text="@string/vymaza"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/createIncome"
         app:layout_constraintVertical_bias="0.204"
         tools:layout_editor_absoluteX="153dp" />
 
