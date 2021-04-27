@@ -5,10 +5,8 @@ import com.example.moneyapp.api.ServiceBuilder
 import com.example.moneyapp.api.interfaces.GetBillByIdInterface
 import com.example.moneyapp.api.interfaces.GetBillInterface
 import com.example.moneyapp.api.interfaces.PostBillInterface
-import com.example.moneyapp.api.models.Bill
-import com.example.moneyapp.api.models.BillResponse
-import com.example.moneyapp.api.models.BillsArray
-import com.example.moneyapp.api.models.NewBill
+import com.example.moneyapp.api.interfaces.PutBillInterface
+import com.example.moneyapp.api.models.*
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import org.json.JSONObject
@@ -98,6 +96,37 @@ class BillService {
                     }
                 }
             }
+        )
+    }
+
+    fun updateBill(userData: UpdateBill, onResult: (String?) -> Unit){
+        Log.d("PutBillService", "Posielam request")
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(PutBillInterface::class.java)
+        retrofit.updateBill(userData).enqueue(
+                object : Callback<JsonObject> {
+                    override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                        Log.d("PutBillService", "failed to response")
+                        Log.d("PutBillService", t.toString())
+                        onResult(null)
+                    }
+                    override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                        Log.d("PutBillService", response.toString())
+                        if(response.isSuccessful) {
+                            val jsonObject = JSONObject(Gson().toJson(response.body()))
+                            Log.d("PutBillService", jsonObject.toString())
+                            val id = jsonObject.getString("result")
+                            Log.d("PutBillService", id)
+                            if(id != null) {
+                                onResult("OK")
+                            }
+                        }
+                        else {
+                            Log.d("PutBillService", response.message().toString())
+                            onResult(response.message().toString())
+                        }
+                    }
+                }
         )
     }
 }
