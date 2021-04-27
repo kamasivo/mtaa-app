@@ -33,8 +33,8 @@
     <string name="invalid_sum">invalid sum</string>
     <string name="percento_na_ucet">percento idúce na tento účet</string>
     <string name="transakcie">Transakcion</string>
-    <string name="vytvori_typ_v_davku">Create expenditure type</string>
-    <string name="typ_v_davku">Expenditure type</string>
+    <string name="vytvori_typ_v_davku">Create expenditure category</string>
+    <string name="typ_v_davku">Name</string>
     <string name="prida_v_davok">Create expenditure</string>
     <string name="et">Bill</string>
     <string name="kateg_rie">Category</string>
