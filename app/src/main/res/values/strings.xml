@@ -63,4 +63,5 @@
     <string name="kateg_ria">Category</string>
     <string name="upravi">Change</string>
     <string name="vymaza">Delete</string>
+    <string name="account_name">Názov účtu</string>
 </resources>

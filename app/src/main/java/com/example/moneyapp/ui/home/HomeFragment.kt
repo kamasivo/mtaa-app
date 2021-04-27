@@ -28,7 +28,6 @@ class HomeFragment : Fragment() {
             it?.let {
                 binding.billsRecycler.adapter = adapter
                 adapter.data = it
-//                Log.d("HomeFragment -> adapter", adapter.data.toString())
             }
         })
         return view

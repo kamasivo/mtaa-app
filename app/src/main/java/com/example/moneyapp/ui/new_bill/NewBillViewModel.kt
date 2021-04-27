@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.R
 import com.example.moneyapp.api.models.NewBill
-import com.example.moneyapp.api.services.PostBillService
+import com.example.moneyapp.api.services.BillService
 
 class NewBillViewModel() : ViewModel() {
     private val _newBillForm = MutableLiveData<NewBillFormState>()
@@ -17,7 +17,7 @@ class NewBillViewModel() : ViewModel() {
 
     fun newBill(name: String, incomePercents: Int, description: String, sum: Int) {
         Log.d("NewBillViewModel", "newBill initiated");
-        val apiService = PostBillService()
+        val apiService = BillService()
 
         val billInfo = NewBill(
             name = name,

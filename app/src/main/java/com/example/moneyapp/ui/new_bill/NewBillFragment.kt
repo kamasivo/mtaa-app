@@ -1,33 +1,24 @@
 package com.example.moneyapp.ui.newbill
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import com.example.moneyapp.NavigationActivity
 import com.example.moneyapp.R
 import com.example.moneyapp.databinding.FragmentNewBillBinding
 
 
 class NewBillFragment : Fragment() {
     private var _binding: FragmentNewBillBinding? = null
-
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,8 +28,6 @@ class NewBillFragment : Fragment() {
         _binding = FragmentNewBillBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
-        // Inflate the layout for this fragment
- //       return inflater.inflate(R.layout.fragment_new_bill, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

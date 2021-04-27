@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.api.models.Bill
-import com.example.moneyapp.api.services.BillUserService
+import com.example.moneyapp.api.services.BillService
 
 class HomeViewModel : ViewModel() {
     val listOfBills: MutableLiveData<List<Bill>> by lazy {
@@ -12,7 +12,7 @@ class HomeViewModel : ViewModel() {
     }
 
     fun loadBills() {
-        val apiService = BillUserService()
+        val apiService = BillService()
 
 
         apiService.getbill {

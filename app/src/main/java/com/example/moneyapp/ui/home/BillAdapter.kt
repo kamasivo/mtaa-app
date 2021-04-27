@@ -1,5 +1,6 @@
 package com.example.moneyapp.ui.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,9 @@ class BillAdapter: RecyclerView.Adapter<BillAdapter.ViewHolder>() {
 
         holder.edit.setOnClickListener {
             val navController = Navigation.findNavController(holder.itemView)
-            navController.navigate(R.id.nav_bill)
+            Log.d("BillAdapter", holder.billName.id.toString())
+            val action = HomeFragmentDirections.homeToBill(holder.billName.id)
+            navController.navigate(action)
         }
     }
 
