@@ -51,40 +51,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <EditText
-        android:id="@+id/nameType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginTop="96dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
         android:id="@+id/sumIncome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toBottomOf="@+id/nameType" />
-
-    <EditText
-        android:id="@+id/sumExpenditure"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="94dp"
-        android:layout_marginLeft="92dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintTop_toBottomOf="@+id/sumIncome" />
+        app:layout_constraintTop_toBottomOf="@+id/income_source" />
 
     <Button
         android:id="@+id/createIncome"
@@ -94,9 +69,7 @@
         android:text="@string/prida"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sumExpenditure"
-        app:layout_constraintVertical_bias="0.913" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/loading"
@@ -113,4 +86,22 @@
         app:layout_constraintStart_toStartOf="@+id/name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
+
+    <Spinner
+        android:id="@+id/income_source"
+        android:layout_width="204dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="104dp"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/bill_choose"
+        android:layout_width="216dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/sumIncome" />
 </androidx.constraintlayout.widget.ConstraintLayout>
