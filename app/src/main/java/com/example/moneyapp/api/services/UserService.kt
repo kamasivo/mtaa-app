@@ -101,7 +101,7 @@ class UserService {
         )
     }
     fun getUser(onResult: (UserProfile?) -> Unit){
-        Log.d("UserService", "Posielam request")
+        Log.d("GETUserService", "Posielam request")
         val serviceBuilder = ServiceBuilder()
         val retrofit = serviceBuilder.buildService(GetUserInterface::class.java)
         retrofit.getUser().enqueue(
@@ -116,7 +116,8 @@ class UserService {
                         Log.d("UserService", response.toString())
                         if(response.isSuccessful) {
                             Log.d("UserService", response.body().toString())
-                            onResult(response.body()?.user)
+                            val user = response.body()!!.user
+                            onResult(user[0])
                         }
                         else {
                             Log.d("UserService", response.message().toString())
@@ -125,7 +126,7 @@ class UserService {
                 }
         )
     }
-    fun updateProfile(userData: UserProfile, onResult: (String?) -> Unit){
+    fun updateProfile(userData: EditUser, onResult: (String?) -> Unit){
         Log.d("PutUserService", "Posielam request")
         val service_builder = ServiceBuilder()
         val retrofit = service_builder.buildService(PutUserInterface::class.java)
@@ -184,6 +185,35 @@ class UserService {
                         }
                     }
                 }
+        )
+    }
+
+    fun editImage(image: NewImage, onResult: (String?) -> Unit){
+        Log.d("UserService", "Posielam request")
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(EditImageInterface::class.java)
+        retrofit.image(image).enqueue(
+            object : Callback<JsonObject> {
+                override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                    Log.d("UserService", "failed to response")
+                    Log.d("UserService", t.toString())
+                    onResult(null)
+                }
+                override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                    Log.d("UserService", response.toString())
+                    if(response.isSuccessful) {
+                        val jsonObject = JSONObject(Gson().toJson(response.body()))
+                        Log.d("UserService", jsonObject.toString())
+                        val result = jsonObject.getString("result")
+                        Log.d("UserService", result)
+                        onResult("OK")
+                    }
+                    else {
+                        Log.d("UserService", response.code().toString())
+                        onResult(response.code().toString())
+                    }
+                }
+            }
         )
     }
 }

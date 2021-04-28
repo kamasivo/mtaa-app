@@ -5,7 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.R
+import com.example.moneyapp.api.models.EditUser
 import com.example.moneyapp.api.models.Password
+import com.example.moneyapp.api.models.UserLogin
 import com.example.moneyapp.api.models.UserProfile
 import com.example.moneyapp.api.services.UserService
 import com.example.moneyapp.ui.new_bill.NewBillResult
@@ -26,7 +28,7 @@ class ProfileViewModel() : ViewModel() {
         Log.d("UpdateProfileViewModel", "updateProfile initiated");
         val apiService = UserService()
 
-        val profileInfo = UserProfile(
+        val profileInfo = EditUser(
                 fullName = name,
                 emailAddress = email
         )
