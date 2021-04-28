@@ -2,9 +2,12 @@ package com.example.moneyapp.api.services
 
 import android.util.Log
 import com.example.moneyapp.api.ServiceBuilder
+import com.example.moneyapp.api.interfaces.DeleteCategoryInterface
+import com.example.moneyapp.api.interfaces.GetCategoryExpenditureInterface
 import com.example.moneyapp.api.interfaces.GetCategoryIncomesInterface
 import com.example.moneyapp.api.interfaces.PostCategoryInterface
 import com.example.moneyapp.api.models.CategoryArray
+import com.example.moneyapp.api.models.ExpenditureCategoryArray
 import com.example.moneyapp.api.models.NewCategory
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -71,6 +74,63 @@ class CategoryService {
                     }
                 }
             }
+        )
+    }
+    fun getExpenditureCategories(onResult: (ExpenditureCategoryArray?) -> Unit){
+        Log.d("GetExpCategoryService", "Posielam request")
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(GetCategoryExpenditureInterface::class.java)
+        retrofit.getExpenditureCategories().enqueue(
+                object : Callback<ExpenditureCategoryArray> {
+                    override fun onFailure(call: Call<ExpenditureCategoryArray>, t: Throwable) {
+                        Log.d("GetExpCategoryService", "failed to response")
+                        Log.d("GetExpCategoryService", t.toString())
+                        onResult(null)
+                    }
+
+                    override fun onResponse(call: Call<ExpenditureCategoryArray>, response: Response<ExpenditureCategoryArray>) {
+                        Log.d("GetExpCategoryService", response.toString())
+                        if(response.isSuccessful) {
+                            Log.d("GetExpCategoryService", response.body().toString())
+                            onResult(response.body())
+
+                        }
+                        else {
+                            Log.d("GetExpCategoryService", response.message().toString())
+                        }
+                    }
+                }
+        )
+    }
+    fun deleteCategory(categoryId: Int, onResult: (String?) -> Unit){
+        Log.d("GetIncCategoryService", "Posielam request")
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(DeleteCategoryInterface::class.java)
+        retrofit.deleteCategory(categoryId).enqueue(
+                object : Callback<JsonObject> {
+                    override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                        Log.d("PostCategoryService", "failed to response")
+                        Log.d("PostCategoryService", t.toString())
+                        onResult(null)
+                    }
+
+                    override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                        Log.d("PostCategoryService", response.toString())
+                        if(response.isSuccessful) {
+                            val jsonObject = JSONObject(Gson().toJson(response.body()))
+                            Log.d("PostCategoryService", jsonObject.toString())
+                            val id = jsonObject.getString("result")
+                            Log.d("PostCategoryService", id)
+                            if(id != null) {
+                                onResult("OK")
+                            }
+                        }
+                        else {
+                            Log.d("PostCategoryService", response.message().toString())
+                            onResult(response.message().toString())
+                        }
+                    }
+                }
         )
     }
 }
