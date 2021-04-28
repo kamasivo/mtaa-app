@@ -11,10 +11,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import com.example.moneyapp.R
 import com.example.moneyapp.databinding.CreateIncomeCategoryBinding
 
 
 class Type : Fragment() {
+    private lateinit var newTypeViewModel: NewTypeViewModel
+    val adapter = IncomeCategoryAdapter()
+
     private var _binding: CreateIncomeCategoryBinding? = null
     private val binding get() = _binding!!
 
@@ -27,7 +33,17 @@ class Type : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = CreateIncomeCategoryBinding.inflate(inflater, container, false)
+        newTypeViewModel = ViewModelProvider(this).get(NewTypeViewModel::class.java)
         val view = binding.root
+
+        newTypeViewModel.listOfIncomeCategory.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                binding.incomeCategoriesRecycler.adapter = adapter
+                adapter.data = it
+            }
+        })
+        newTypeViewModel.loadIncomeCategories()
+
         return view
     }
 
@@ -63,7 +79,8 @@ class Type : Fragment() {
                 showNewTypeFailed(newTypeResult.error)
             }
             if (newTypeResult.success) {
-                // todo create income cateogry on success
+                val navController = Navigation.findNavController(view)
+                navController.navigate(R.id.action_type)
             }
 
         })

@@ -5,10 +5,30 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moneyapp.R
+import com.example.moneyapp.api.models.Bill
+import com.example.moneyapp.api.models.Category
 import com.example.moneyapp.api.models.NewType
+import com.example.moneyapp.api.services.BillService
+import com.example.moneyapp.api.services.CategoryService
 import com.example.moneyapp.api.services.PostTypeService
 
 class NewTypeViewModel() : ViewModel() {
+
+    val listOfIncomeCategory: MutableLiveData<List<Category>> by lazy {
+        MutableLiveData<List<Category>>()
+    }
+
+    fun loadIncomeCategories() {
+        val apiService = CategoryService()
+
+        apiService.getIncomeCategories {
+            if (it != null) {
+                Log.d("HomeViewModel", "bills loaded")
+                listOfIncomeCategory.value = it.incomeCategories
+            }
+        }
+    }
+
     private val _newTypeForm = MutableLiveData<NewTypeFormState>()
     val newTypeFormState: LiveData<NewTypeFormState> = _newTypeForm
 

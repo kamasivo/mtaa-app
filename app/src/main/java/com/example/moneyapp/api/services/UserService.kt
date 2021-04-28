@@ -2,11 +2,8 @@ package com.example.moneyapp.api.services
 
 import android.util.Log
 import com.example.moneyapp.api.ServiceBuilder
-import com.example.moneyapp.api.interfaces.LoginUserInterface
-import com.example.moneyapp.api.interfaces.LogoutUserInterface
-import com.example.moneyapp.api.interfaces.PostUserInterface
-import com.example.moneyapp.api.models.User
-import com.example.moneyapp.api.models.UserLogin
+import com.example.moneyapp.api.interfaces.*
+import com.example.moneyapp.api.models.*
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import org.json.JSONObject
@@ -101,6 +98,92 @@ class UserService {
                     }
                 }
             }
+        )
+    }
+    fun getUser(onResult: (UserProfile?) -> Unit){
+        Log.d("UserService", "Posielam request")
+        val serviceBuilder = ServiceBuilder()
+        val retrofit = serviceBuilder.buildService(GetUserInterface::class.java)
+        retrofit.getUser().enqueue(
+                object : Callback<UserResponse> {
+                    override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                        Log.d("UserService", "failed to response")
+                        Log.d("UserService", t.toString())
+                        onResult(null)
+                    }
+
+                    override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+                        Log.d("UserService", response.toString())
+                        if(response.isSuccessful) {
+                            Log.d("UserService", response.body().toString())
+                            onResult(response.body()?.user)
+                        }
+                        else {
+                            Log.d("UserService", response.message().toString())
+                        }
+                    }
+                }
+        )
+    }
+    fun updateProfile(userData: UserProfile, onResult: (String?) -> Unit){
+        Log.d("PutUserService", "Posielam request")
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(PutUserInterface::class.java)
+        retrofit.updateUser(userData).enqueue(
+                object : Callback<JsonObject> {
+                    override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                        Log.d("PutUserService", "failed to response")
+                        Log.d("PutUserService", t.toString())
+                        onResult(null)
+                    }
+                    override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                        Log.d("PutUserService", response.toString())
+                        if(response.isSuccessful) {
+                            val jsonObject = JSONObject(Gson().toJson(response.body()))
+                            Log.d("PutUserService", jsonObject.toString())
+                            val id = jsonObject.getString("result")
+                            Log.d("PutUserService", id)
+                            if(id != null) {
+                                onResult("OK")
+                            }
+                        }
+                        else {
+                            Log.d("PutUserService", response.message().toString())
+                            onResult(response.message().toString())
+                        }
+                    }
+                }
+        )
+    }
+
+    fun updatePassword(userData: Password, onResult: (String?) -> Unit){
+        Log.d("PutUserService", "Posielam request")
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(PutPasswordInterface::class.java)
+        retrofit.updatePassword(userData).enqueue(
+                object : Callback<JsonObject> {
+                    override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                        Log.d("PutPasswordService", "failed to response")
+                        Log.d("PutPasswordService", t.toString())
+                        onResult(null)
+                    }
+                    override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                        Log.d("PutPasswordService", response.toString())
+                        if(response.isSuccessful) {
+                            val jsonObject = JSONObject(Gson().toJson(response.body()))
+                            Log.d("PutPasswordService", jsonObject.toString())
+                            val id = jsonObject.getString("result")
+                            Log.d("PutPasswordService", id)
+                            if(id != null) {
+                                onResult("OK")
+                            }
+                        }
+                        else {
+                            Log.d("PutPasswordService", response.message().toString())
+                            onResult(response.message().toString())
+                        }
+                    }
+                }
         )
     }
 }

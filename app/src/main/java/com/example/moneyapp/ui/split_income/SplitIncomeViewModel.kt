@@ -44,8 +44,8 @@ class SplitIncomeViewModel() : ViewModel() {
         apiService.getIncomeCategories() {
             if (it != null) {
                 Log.d("CreateIncomeView", "categories loaded")
-                Log.d("CreateIncomeView", it.bills.toString())
-                listOfCategories.value = it.bills
+                Log.d("CreateIncomeView", it.incomeCategories.toString())
+                listOfCategories.value = it.incomeCategories
             }
         }
     }

@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.moneyapp.GlobalApplication
 import com.example.moneyapp.databinding.SplitIncomeBinding
 import com.example.moneyapp.ui.add_income.Item
@@ -50,7 +51,8 @@ class SplitIncome : Fragment() {
                 showSplitIncomeFailed(splitIncomeResult.error)
             }
             if (splitIncomeResult.success) {
-                // todo presmerovat na home
+                val navController = Navigation.findNavController(view)
+                navController.navigate(com.example.moneyapp.R.id.action_nav_splitIncome_to_nav_home)
             }
         })
 

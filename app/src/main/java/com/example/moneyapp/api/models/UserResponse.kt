@@ -3,8 +3,8 @@ package com.example.moneyapp.api.models
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class CategoryArray (
-    @SerializedName("incomeCategories")
+data class UserResponse (
+    @SerializedName("user")
     @Expose
-    val incomeCategories: List<Category>
+    public val user: UserProfile
 )

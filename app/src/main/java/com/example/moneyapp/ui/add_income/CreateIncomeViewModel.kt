@@ -60,7 +60,7 @@ class CreateIncomeViewModel() : ViewModel() {
         apiService.getIncomeCategories() {
             if (it != null) {
                 Log.d("CreateIncomeView", "categories loaded")
-                listOfCategories.value = it.bills
+                listOfCategories.value = it.incomeCategories
             }
         }
     }

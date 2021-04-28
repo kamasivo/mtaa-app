@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import com.example.moneyapp.R
 import com.example.moneyapp.databinding.CreateExpenditureCategoryBinding
 
 
@@ -55,6 +57,8 @@ class Category : Fragment() {
                 showNewCategoryFailed(newCategoryResult.error)
             }
             if (newCategoryResult.success) {
+                val navController = Navigation.findNavController(view)
+                navController.navigate(R.id.action_category)
             }
 
         })

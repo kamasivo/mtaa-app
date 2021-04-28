@@ -73,4 +73,6 @@
     <string name="split_income">Split income</string>
     <string name="creat_income">Add income</string>
     <string name="logout">Logout</string>
+    <string name="invalid_profilepassword">Invalid password</string>
+    <string name="invalid_repeatPassword">Password dont match</string>
 </resources>

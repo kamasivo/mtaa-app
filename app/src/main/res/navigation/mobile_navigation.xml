@@ -26,17 +26,29 @@
         android:id="@+id/nav_profile"
         android:name="com.example.moneyapp.ui.profile.Profile"
         android:label="Profile"
-        tools:layout="@layout/profile" />
+        tools:layout="@layout/profile" >
+        <action
+            android:id="@+id/action_nav_profile_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
     <fragment
         android:id="@+id/nav_category"
         android:name="com.example.moneyapp.ui.category.Category"
         android:label="Create expenditure cateogry"
-        tools:layout="@layout/create_expenditure_category" />
+        tools:layout="@layout/create_expenditure_category" >
+        <action
+            android:id="@+id/action_category"
+            app:destination="@id/nav_category" />
+    </fragment>
     <fragment
         android:id="@+id/nav_type"
         android:name="com.example.moneyapp.ui.create_income_category.Type"
         android:label="Create income category"
-        tools:layout="@layout/create_income_category" />
+        tools:layout="@layout/create_income_category" >
+        <action
+            android:id="@+id/action_type"
+            app:destination="@id/nav_type" />
+    </fragment>
     <fragment
         android:id="@+id/nav_newBill"
         android:name="com.example.moneyapp.ui.new_bill.NewBillFragment"
@@ -50,7 +62,11 @@
         android:id="@+id/nav_createExpenditure"
         android:name="com.example.moneyapp.ui.add_expenditure.CreateExpenditure"
         android:label="Add expenditure"
-        tools:layout="@layout/add_expenditure" />
+        tools:layout="@layout/add_expenditure" >
+        <action
+            android:id="@+id/action_nav_createExpenditure_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
     <fragment
         android:id="@+id/nav_createIncome"
         android:name="com.example.moneyapp.ui.add_income.CreateIncome"
@@ -66,6 +82,9 @@
         android:name="com.example.moneyapp.ui.split_income.SplitIncome"
         android:label="Split income"
         tools:layout="@layout/split_income" >
+        <action
+            android:id="@+id/action_nav_splitIncome_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
     <fragment
         android:id="@+id/nav_home"

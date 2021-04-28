@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
+import com.example.moneyapp.R
 import com.example.moneyapp.databinding.AddExpenditureBinding
 
 
@@ -64,6 +66,8 @@ class CreateExpenditure : Fragment() {
                 showCreateExpenditureFailed(createExpenditureResult.error)
             }
             if (createExpenditureResult.success) {
+                val navController = Navigation.findNavController(view)
+                navController.navigate(R.id.action_nav_createExpenditure_to_nav_home)
             }
 
         })
