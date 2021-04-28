@@ -23,22 +23,10 @@
         android:layout_width="130dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="156dp"
+        android:layout_marginTop="144dp"
         android:text="@string/profilov_obr_zok"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="188dp"
-        android:layout_height="156dp"
-        android:layout_marginTop="168dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.86"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nickname"
-        tools:src="@tools:sample/avatars" />
 
     <EditText
         android:id="@+id/nickname"
@@ -190,4 +178,35 @@
         app:layout_constraintStart_toStartOf="@+id/nickname"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
+
+    <Button
+        android:id="@+id/upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="24dp"
+        android:text="Upload image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <Button
+        android:id="@+id/choose"
+        android:layout_width="171dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="12dp"
+        android:text="Choose image"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/changeProfile" />
+
+    <ImageView
+        android:id="@+id/profile_image"
+        android:layout_width="95dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        tools:src="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,30 +1,42 @@
 package com.example.moneyapp.ui.profile
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.ImageDecoder
+import android.net.Uri
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.util.Base64.decode
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.lifecycle.Observer
-import androidx.navigation.fragment.navArgs
 import com.example.moneyapp.R
+import com.example.moneyapp.api.models.NewImage
+import com.example.moneyapp.api.services.UserService
 import com.example.moneyapp.databinding.ProfileBinding
 import com.example.moneyapp.ui.new_bill.afterTextChanged
+import java.io.ByteArrayOutputStream
+import java.util.*
+
 
 class Profile : Fragment() {
     private lateinit var model: ProfileViewModel
     private var _binding: ProfileBinding? = null
     private val binding get() = _binding!!
-//    val args: FragmentProfileArgs by navArgs()
+    private var selectedImage: Bitmap? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = ProfileBinding.inflate(inflater, container, false)
         model = ViewModelProvider(this).get(ProfileViewModel::class.java)
         val view = binding.root
@@ -44,6 +56,20 @@ class Profile : Fragment() {
         val email = binding.email
         val loading = binding.loading
         val create = binding.changeProfile
+        val upload = binding.upload
+        val choose = binding.choose
+        val apiService = UserService()
+
+        apiService.getUser {
+            if (it != null) {
+                Log.d("Profile", "user loaded")
+                name.setText(it.fullName)
+                email.setText(it.emailAddress)
+                val decodedString: ByteArray = android.util.Base64.decode(it.image, android.util.Base64.DEFAULT)
+                val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+                binding.profileImage.setImageBitmap(decodedByte)
+            }
+        }
 
         model.profileResult.observe(viewLifecycleOwner, Observer {
             val profileResult = it ?: return@Observer
@@ -64,11 +90,43 @@ class Profile : Fragment() {
             model.updateProfile(name.text.toString(), email.text.toString())
         }
 
+        choose.setOnClickListener {
+            Intent(Intent.ACTION_PICK).also {
+                it.type = "image/*"
+                startActivityForResult(it, REQUEST_CODE_IMAGE_PICKER)
+            }
+        }
+        upload.setOnClickListener {
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            selectedImage?.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
+            val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
+
+            val encodedString = android.util.Base64.encodeToString(
+                byteArray,
+                android.util.Base64.DEFAULT
+            )
+            val image = NewImage(
+                newImage = encodedString,
+            )
+            apiService.editImage(image) {
+                if (it != null) {
+                    Log.d("ProfileViewModel", it)
+                    if (it == "OK") {
+                        Log.d("fragmentProfile", "obrazok sa uspesne nahral")
+                        binding.profileImage.setImageBitmap(selectedImage)
+                    } else {
+                        // todo toast ze sa nepodarilo zmenit obrazok
+                    }
+                }
+            }
+        }
+
 
         val password = binding.profilePassword
         val newPassword = binding.newPassword
         val repeatPassword = binding.repeatPassword
         val update = binding.updatePassword
+        binding.upload.isEnabled = false
 
         model.profileFormState.observe(viewLifecycleOwner, Observer {
             val profileState = it ?: return@Observer
@@ -85,14 +143,15 @@ class Profile : Fragment() {
 
         name.afterTextChanged {
             model.passwordDataChanged(
-                    newPassword.text.toString(),
-                    repeatPassword.text.toString()
+                newPassword.text.toString(),
+                repeatPassword.text.toString()
             )
         }
+        // todo tu mas dvakrat to iste, asi tam ma byt password?
         name.afterTextChanged {
             model.passwordDataChanged(
-                    newPassword.text.toString(),
-                    repeatPassword.text.toString()
+                newPassword.text.toString(),
+                repeatPassword.text.toString()
             )
         }
         update.setOnClickListener {
@@ -100,6 +159,29 @@ class Profile : Fragment() {
             model.updatePassword(password.text.toString(), newPassword.text.toString())
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK) {
+            when(requestCode) {
+                REQUEST_CODE_IMAGE_PICKER -> {
+                    val imageUri: Uri = data?.data!!
+                    selectedImage = ImageDecoder.decodeBitmap(
+                        ImageDecoder.createSource(
+                            requireContext().contentResolver,
+                            imageUri
+                        )
+                    )
+                    binding.upload.isEnabled = true
+                }
+            }
+        }
+    }
+
+    companion object {
+        private const val REQUEST_CODE_IMAGE_PICKER = 100
+    }
+
 
     private fun showProfileFailed(errorString: String) {
         Toast.makeText(this.context, errorString, Toast.LENGTH_SHORT).show()

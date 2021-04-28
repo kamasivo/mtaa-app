@@ -6,5 +6,5 @@ import com.google.gson.annotations.SerializedName
 data class UserResponse (
     @SerializedName("user")
     @Expose
-    public val user: UserProfile
+    val user: List<UserProfile>
 )
