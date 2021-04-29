@@ -15,7 +15,9 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.example.moneyapp.NavigationActivity
+import com.example.moneyapp.R
 import com.example.moneyapp.databinding.RegisterScreenBinding
 
 class FragmentRegisterScreen : Fragment() {
@@ -67,9 +69,11 @@ class FragmentRegisterScreen : Fragment() {
                 showRegisterFailed(registerResult.error)
             }
             if (registerResult.success) {
-                Log.d("FragmentRegisterScreen", "Going to main screen")
-                val ide = Intent(this.context, NavigationActivity::class.java)
-                startActivity(ide)
+                Log.d("FragmentRegisterScreen", "Going to login screen")
+                val navController = Navigation.findNavController(view)
+                navController.navigate(R.id.action_fragmentRegisterScreen_to_fragmentLoginScreen)
+//                val ide = Intent(this.context, NavigationActivity::class.java)
+//                startActivity(ide)
             }
 
         })
