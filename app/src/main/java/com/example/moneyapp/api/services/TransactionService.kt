@@ -2,12 +2,8 @@ package com.example.moneyapp.api.services
 
 import android.util.Log
 import com.example.moneyapp.api.ServiceBuilder
-import com.example.moneyapp.api.interfaces.PostExpenditureInterface
-import com.example.moneyapp.api.interfaces.PostIncomeInterface
-import com.example.moneyapp.api.interfaces.PostSplitIncomeInterface
-import com.example.moneyapp.api.models.NewExpenditure
-import com.example.moneyapp.api.models.NewIncome
-import com.example.moneyapp.api.models.NewSplitIncome
+import com.example.moneyapp.api.interfaces.*
+import com.example.moneyapp.api.models.*
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import org.json.JSONObject
@@ -108,6 +104,58 @@ class TransactionService {
                     }
                 }
             }
+        )
+    }
+    fun getIncome(billId: Int, onResult: (TransactionArray?) -> Unit){
+        Log.d("BillUserService", "Posielam request")
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(GetIncomeInterface::class.java)
+        retrofit.getIncomes(billId).enqueue(
+                object : Callback<TransactionArray> {
+                    override fun onFailure(call: Call<TransactionArray>, t: Throwable) {
+                        Log.d("TransactionUserService", "failed to response")
+                        Log.d("TransactionUserService", t.toString())
+                        onResult(null)
+                    }
+                    override fun onResponse(call: Call<TransactionArray>, response: Response<TransactionArray>) {
+                        Log.d("TransactionUserService", response.toString())
+                        if(response.isSuccessful) {
+//                            Log.d("BillUserService", response.body().toString())
+                            val transactions = response.body()
+//                            Log.d("TransactionUserService", transactions.toString())
+                            onResult(transactions)
+                        }
+                        else {
+                            Log.d("TransactionUserService", response.code().toString())
+                        }
+                    }
+                }
+        )
+    }
+    fun getExpenditure(billId: Int, onResult: (TransactionArray?) -> Unit){
+        Log.d("TransactionUserService", "Posielam request")
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(GetExpenditureInterface::class.java)
+        retrofit.getExpenditures(billId).enqueue(
+                object : Callback<TransactionArray> {
+                    override fun onFailure(call: Call<TransactionArray>, t: Throwable) {
+                        Log.d("TransactionUserService", "failed to response")
+                        Log.d("TransactionUserService", t.toString())
+                        onResult(null)
+                    }
+                    override fun onResponse(call: Call<TransactionArray>, response: Response<TransactionArray>) {
+                        Log.d("TransactionUserService", response.toString())
+                        if(response.isSuccessful) {
+//                            Log.d("TransactionUserService", response.body().toString())
+                            val transactions = response.body()
+//                            Log.d("TransactionUserService", Transactions.toString())
+                            onResult(transactions)
+                        }
+                        else {
+                            Log.d("TransactionUserService", response.code().toString())
+                        }
+                    }
+                }
         )
     }
 }

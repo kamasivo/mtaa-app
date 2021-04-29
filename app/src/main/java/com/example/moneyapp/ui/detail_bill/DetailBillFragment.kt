@@ -13,19 +13,18 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.moneyapp.R
 import com.example.moneyapp.databinding.DetailBillBinding
+import com.example.moneyapp.databinding.HomeRecyclerBinding
+import com.example.moneyapp.ui.home.BillAdapter
 
 class DetailBillFragment : Fragment() {
     private lateinit var model: DetailBillViewModel
     private var _binding: DetailBillBinding? = null
     private val binding get() = _binding!!
     val args: DetailBillFragmentArgs by navArgs()
+    val adapter = ExpenditureAdapter()
+    val Incomeadapter = IncomeAdapter()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = DetailBillBinding.inflate(inflater, container, false)
-        model = ViewModelProvider(this).get(DetailBillViewModel::class.java)
-        val view = binding.root
-        return view
-    }
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -79,6 +78,29 @@ class DetailBillFragment : Fragment() {
             loading.visibility = View.VISIBLE
             model.updateBill(name.text.toString(), incPercent, description.text.toString(), totalSum, args.billId)
         }
+    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        _binding = DetailBillBinding.inflate(inflater, container, false)
+        model = ViewModelProvider(this).get(DetailBillViewModel::class.java)
+        val view = binding.root
+
+        model.listOfIncomes.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                binding.incomeRecycler.adapter = Incomeadapter
+                adapter.data = it
+            }
+        })
+        model.loadIncomes(args.billId)
+
+        model.listOfExpenditures.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                binding.expenditureRecycler.adapter = adapter
+                adapter.data = it
+            }
+        })
+        model.loadExpenditures(args.billId)
+
+        return view
     }
     private fun showNewBillFailed(errorString: String) {
         Toast.makeText(this.context, errorString, Toast.LENGTH_SHORT).show()
