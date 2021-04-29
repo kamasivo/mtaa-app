@@ -22,8 +22,8 @@
         android:id="@+id/textView15"
         android:layout_width="130dp"
         android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="140dp"
         android:text="@string/profilov_obr_zok"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
@@ -54,9 +54,8 @@
         android:id="@+id/textView16"
         android:layout_width="130dp"
         android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="112dp"
         android:text="@string/zmeni_heslo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
@@ -110,8 +109,7 @@
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="220dp"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintStart_toEndOf="@+id/textView17"
@@ -182,18 +180,18 @@
 
     <Button
         android:id="@+id/upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="212dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="174dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="196dp"
+        android:layout_marginTop="4dp"
         android:text="Upload image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <Button
         android:id="@+id/choose"
-        android:layout_width="171dp"
-        android:layout_height="48dp"
+        android:layout_width="173dp"
+        android:layout_height="42dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="12dp"
         android:text="Choose image"
@@ -202,9 +200,9 @@
 
     <ImageView
         android:id="@+id/profile_image"
-        android:layout_width="95dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="36dp"
+        android:layout_width="135dp"
+        android:layout_height="96dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
