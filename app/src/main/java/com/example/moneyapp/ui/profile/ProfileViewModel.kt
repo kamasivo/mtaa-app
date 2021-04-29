@@ -21,6 +21,9 @@ class ProfileViewModel() : ViewModel() {
     private val _profileForm = MutableLiveData<ProfilePasswordFormState>()
     val profileFormState: LiveData<ProfilePasswordFormState> = _profileForm
 
+    private val _profilForm = MutableLiveData<ProfileFormState>()
+    val profilFormState: LiveData<ProfileFormState> = _profilForm
+
     private val _profileResult = MutableLiveData<ProfileResult>()
     val profileResult: LiveData<ProfileResult> = _profileResult
 
@@ -79,5 +82,20 @@ class ProfileViewModel() : ViewModel() {
     }
     private fun isRepeatPasswordValid(password: String, repeatPassword: String): Boolean {
         return password == repeatPassword
+    }
+
+    fun emailDataChanged(email: String) {
+        if (!isEmailValid(email)) {
+            _profilForm.value = ProfileFormState(emailError = R.string.invalid_email)
+        } else {
+            _profilForm.value = ProfileFormState(isDataValid = true)
+        }
+    }
+
+    private fun isEmailValid(email: String): Boolean {
+        if(email.contains('@') && email.length > 4) {
+            return true
+        }
+        return false
     }
 }

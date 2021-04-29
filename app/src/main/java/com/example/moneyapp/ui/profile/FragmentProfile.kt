@@ -85,6 +85,22 @@ class Profile : Fragment() {
 
         })
 
+        model.profilFormState.observe(viewLifecycleOwner, Observer {
+            val profileState = it ?: return@Observer
+
+            create.isEnabled = profileState.isDataValid
+
+            if (profileState.emailError != null) {
+                email.error = getString(profileState.emailError)
+            }
+        })
+
+        email.afterTextChanged {
+            model.emailDataChanged(
+                    email.text.toString()
+            )
+        }
+
         create.setOnClickListener {
             loading.visibility = View.VISIBLE
             model.updateProfile(name.text.toString(), email.text.toString())
@@ -141,14 +157,14 @@ class Profile : Fragment() {
             }
         })
 
-        name.afterTextChanged {
+        newPassword.afterTextChanged {
             model.passwordDataChanged(
                 newPassword.text.toString(),
                 repeatPassword.text.toString()
             )
         }
-        // todo tu mas dvakrat to iste, asi tam ma byt password?
-        name.afterTextChanged {
+
+        repeatPassword.afterTextChanged {
             model.passwordDataChanged(
                 newPassword.text.toString(),
                 repeatPassword.text.toString()

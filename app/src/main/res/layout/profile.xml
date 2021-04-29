@@ -112,7 +112,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="256dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintStart_toEndOf="@+id/textView17"
         app:layout_constraintTop_toBottomOf="@+id/changeProfile" />
 
@@ -124,7 +124,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintStart_toEndOf="@+id/textView18"
         app:layout_constraintTop_toBottomOf="@+id/profilePassword" />
 
@@ -136,7 +136,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintStart_toEndOf="@+id/textView19"
         app:layout_constraintTop_toBottomOf="@+id/newPassword" />
 
