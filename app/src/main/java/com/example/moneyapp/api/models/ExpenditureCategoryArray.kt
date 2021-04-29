@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class ExpenditureCategoryArray (
-    @SerializedName("expenditureCategory")
+    @SerializedName("expenditureCategories")
     @Expose
     val expenditureCategories: List<ExpenditureCategory>
 )
