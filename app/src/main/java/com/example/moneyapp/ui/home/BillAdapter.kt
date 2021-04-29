@@ -9,12 +9,15 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moneyapp.R
 import com.example.moneyapp.api.models.Bill
+import com.example.moneyapp.api.services.BillService
+import com.example.moneyapp.api.services.CategoryService
 
 class BillAdapter: RecyclerView.Adapter<BillAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val billName: TextView = itemView.findViewById(R.id.bill_name)
         val sum: TextView = itemView.findViewById(R.id.sum)
         val edit: TextView = itemView.findViewById(R.id.edit)
+        val delete: TextView = itemView.findViewById(R.id.delete)
     }
 
     var data =  listOf<Bill>()
@@ -33,6 +36,20 @@ class BillAdapter: RecyclerView.Adapter<BillAdapter.ViewHolder>() {
             Log.d("BillAdapter", holder.billName.id.toString())
             val action = HomeFragmentDirections.homeToBill(holder.billName.id)
             navController.navigate(action)
+        }
+
+        holder.delete.setOnClickListener {
+            deleteBill(holder.billName.id)
+            val navController = Navigation.findNavController(holder.itemView)
+            navController.navigate(R.id.action_home)
+        }
+    }
+
+    fun deleteBill(categoryId: Int) {
+        Log.d("NewTypeViewModel", "newType initiated");
+        val apiService = BillService()
+
+        apiService.deleteBill(categoryId) {
         }
     }
 

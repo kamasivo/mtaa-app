@@ -2,10 +2,7 @@ package com.example.moneyapp.api.services
 
 import android.util.Log
 import com.example.moneyapp.api.ServiceBuilder
-import com.example.moneyapp.api.interfaces.GetBillByIdInterface
-import com.example.moneyapp.api.interfaces.GetBillInterface
-import com.example.moneyapp.api.interfaces.PostBillInterface
-import com.example.moneyapp.api.interfaces.PutBillInterface
+import com.example.moneyapp.api.interfaces.*
 import com.example.moneyapp.api.models.*
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -123,6 +120,37 @@ class BillService {
                         }
                         else {
                             Log.d("PutBillService", response.message().toString())
+                            onResult(response.message().toString())
+                        }
+                    }
+                }
+        )
+    }
+    fun deleteBill(billId: Int, onResult: (String?) -> Unit){
+        Log.d("DeleteBillService", "Posielam request")
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(DeleteBillInterface::class.java)
+        retrofit.deleteBill(billId).enqueue(
+                object : Callback<JsonObject> {
+                    override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                        Log.d("DeleteBillService", "failed to response")
+                        Log.d("DeleteBillService", t.toString())
+                        onResult(null)
+                    }
+
+                    override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                        Log.d("DeleteBillService", response.toString())
+                        if(response.isSuccessful) {
+                            val jsonObject = JSONObject(Gson().toJson(response.body()))
+                            Log.d("DeleteBillService", jsonObject.toString())
+                            val id = jsonObject.getString("result")
+                            Log.d("DeleteBillService", id)
+                            if(id != null) {
+                                onResult("OK")
+                            }
+                        }
+                        else {
+                            Log.d("DeleteBillService", response.message().toString())
                             onResult(response.message().toString())
                         }
                     }

@@ -7,7 +7,7 @@ android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/bill_name"
-        android:layout_width="176dp"
+        android:layout_width="150dp"
         android:layout_height="44dp"
         android:layout_marginTop="16dp"
         android:background="@color/primaryLightColor"
@@ -17,25 +17,42 @@ android:layout_height="wrap_content">
         android:textSize="20sp"
         app:firstBaselineToTopHeight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.097"
+        app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Bill name" />
 
     <TextView
         android:id="@+id/sum"
-        android:layout_width="134dp"
+        android:layout_width="120dp"
         android:layout_height="42dp"
-        android:layout_marginStart="208dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginLeft="168dp"
         android:layout_marginTop="16dp"
-        android:textAlignment="center"
         android:background="@color/primaryDarkColor"
         android:backgroundTint="@color/primaryDarkColor"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="SUM!!!" />
+
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="76dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginRight="72dp"
+        android:text="Delete"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/income_sum"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.478" />
 
     <Button
         android:id="@+id/edit"
@@ -45,8 +62,8 @@ android:layout_height="wrap_content">
         app:backgroundTint="@color/primaryTextColor"
         app:layout_constraintBottom_toBottomOf="@+id/sum"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintHorizontal_bias="0.978"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.666" />
 </androidx.constraintlayout.widget.ConstraintLayout>

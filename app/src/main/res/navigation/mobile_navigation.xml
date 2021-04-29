@@ -94,5 +94,8 @@
         <action
             android:id="@+id/home_to_bill"
             app:destination="@id/nav_bill" />
+        <action
+            android:id="@+id/action_home"
+            app:destination="@id/nav_home" />
     </fragment>
 </navigation>

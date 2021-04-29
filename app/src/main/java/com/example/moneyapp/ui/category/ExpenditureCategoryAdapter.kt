@@ -31,7 +31,7 @@ class ExpenditureCategoryAdapter: RecyclerView.Adapter<ExpenditureCategoryAdapte
         holder.delete.setOnClickListener {
             deleteCategory(holder.expenditureCategoryName.id)
             val navController = Navigation.findNavController(holder.itemView)
-            navController.navigate(R.id.action_type)
+            navController.navigate(R.id.action_category)
         }
     }
     fun deleteCategory(categoryId: Int) {
