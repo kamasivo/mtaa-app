@@ -134,7 +134,7 @@ class Profile : Fragment() {
                         Log.d("fragmentProfile", "obrazok sa uspesne nahral")
                         binding.profileImage.setImageBitmap(selectedImage)
                     } else {
-                        // todo toast ze sa nepodarilo zmenit obrazok
+                        Toast.makeText(this.context, "Cannot change image, try again.", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
