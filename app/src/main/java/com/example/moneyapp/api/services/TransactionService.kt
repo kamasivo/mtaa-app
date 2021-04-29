@@ -107,7 +107,7 @@ class TransactionService {
         )
     }
     fun getIncome(billId: Int, onResult: (TransactionArray?) -> Unit){
-        Log.d("BillUserService", "Posielam request")
+        Log.d("TransactionUserService", "Posielam request")
         val service_builder = ServiceBuilder()
         val retrofit = service_builder.buildService(GetIncomeInterface::class.java)
         retrofit.getIncomes(billId).enqueue(
@@ -120,7 +120,7 @@ class TransactionService {
                     override fun onResponse(call: Call<TransactionArray>, response: Response<TransactionArray>) {
                         Log.d("TransactionUserService", response.toString())
                         if(response.isSuccessful) {
-                            Log.d("BillUserService", response.body().toString())
+                            Log.d("TransactionUserService", response.body().toString())
                             onResult(response.body())
                         }
                         else {
@@ -149,6 +149,67 @@ class TransactionService {
                         }
                         else {
                             Log.d("TransactionUserService", response.message().toString())
+                        }
+                    }
+                }
+        )
+    }
+    fun updateTransaction(userData: UpdateTransaction, onResult: (String?) -> Unit){
+        Log.d("PutTransactionService", "Posielam request")
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(PutTransactionInterface::class.java)
+        retrofit.updateTransaction(userData).enqueue(
+                object : Callback<JsonObject> {
+                    override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                        Log.d("PutTransactionService", "failed to response")
+                        Log.d("PutTransactionService", t.toString())
+                        onResult(null)
+                    }
+                    override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                        Log.d("PutTransactionService", response.toString())
+                        if(response.isSuccessful) {
+                            val jsonObject = JSONObject(Gson().toJson(response.body()))
+                            Log.d("PutTransactionService", jsonObject.toString())
+                            val id = jsonObject.getString("result")
+                            Log.d("PutTransactionService", id)
+                            if(id != null) {
+                                onResult("OK")
+                            }
+                        }
+                        else {
+                            Log.d("PutTransactionService", response.message().toString())
+                            onResult(response.message().toString())
+                        }
+                    }
+                }
+        )
+    }
+    fun deleteTransaction(transactionId: Int, onResult: (String?) -> Unit){
+        Log.d("DeleteTransaction", "Posielam request")
+        val service_builder = ServiceBuilder()
+        val retrofit = service_builder.buildService(DeleteTransactionInterface::class.java)
+        retrofit.deleteTransaction(transactionId).enqueue(
+                object : Callback<JsonObject> {
+                    override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                        Log.d("DeleteTransaction", "failed to response")
+                        Log.d("DeleteTransaction", t.toString())
+                        onResult(null)
+                    }
+
+                    override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                        Log.d("DeleteTransaction", response.toString())
+                        if(response.isSuccessful) {
+                            val jsonObject = JSONObject(Gson().toJson(response.body()))
+                            Log.d("DeleteTransaction", jsonObject.toString())
+                            val id = jsonObject.getString("result")
+                            Log.d("DeleteTransaction", id)
+                            if(id != null) {
+                                onResult("OK")
+                            }
+                        }
+                        else {
+                            Log.d("DeleteTransaction", response.message().toString())
+                            onResult(response.message().toString())
                         }
                     }
                 }

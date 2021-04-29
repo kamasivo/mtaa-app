@@ -14,7 +14,6 @@ import com.example.moneyapp.api.models.Transaction
 class ExpenditureAdapter: RecyclerView.Adapter<ExpenditureAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val sum: TextView = itemView.findViewById(R.id.expenditure_sum)
-        val delete: TextView = itemView.findViewById(R.id.delete)
         val edit: TextView = itemView.findViewById(R.id.edit)
     }
 
@@ -25,16 +24,15 @@ class ExpenditureAdapter: RecyclerView.Adapter<ExpenditureAdapter.ViewHolder>() 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         val res = holder.itemView.context.resources
-//        holder.sum.id = item.categoryId.toString().toInt()
         holder.sum.text = item.sum.toString()
         holder.edit.id = item.id.toString().toInt()
 
-//        holder.edit.setOnClickListener {
-//            val navController = Navigation.findNavController(holder.itemView)
-//            Log.d("BillAdapter", holder.sum.id.toString())
-//            val action = HomeFragmentDirections.homeToBill(holder.edit.id)
-//            navController.navigate(action)
-//        }
+        holder.edit.setOnClickListener {
+            val navController = Navigation.findNavController(holder.itemView)
+            Log.d("BillAdapter", holder.edit.id.toString())
+            val action = DetailBillFragmentDirections.billToNavUpdateTransaction(holder.edit.id)
+            navController.navigate(action)
+        }
     }
 
 

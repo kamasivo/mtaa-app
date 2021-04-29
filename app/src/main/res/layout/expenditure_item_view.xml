@@ -7,7 +7,7 @@ android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/expenditure_sum"
-        android:layout_width="80dp"
+        android:layout_width="150dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
         android:paddingTop="5dp"
@@ -22,27 +22,11 @@ android:layout_height="wrap_content">
         tools:text="20000" />
 
     <Button
-        android:id="@+id/delete"
-        android:layout_width="76dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="45dp"
-        android:layout_marginRight="72dp"
-        android:text="Delete"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/ependiture_sum"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.478" />
-
-    <Button
         android:id="@+id/edit"
         android:layout_width="30dp"
         android:layout_height="31dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginRight="16dp"
         android:background="@android:drawable/ic_menu_edit"
         app:backgroundTint="@color/black"

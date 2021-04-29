@@ -54,7 +54,7 @@ class DetailBillFragment : Fragment() {
             }
             if (newBillResult.success) {
                 val navController = Navigation.findNavController(view)
-                navController.navigate(R.id.bill_to_nav_home)
+                navController.navigate(R.id.nav_home)
             }
 
         })
@@ -86,6 +86,7 @@ class DetailBillFragment : Fragment() {
 
         model.listOfExpenditures.observe(viewLifecycleOwner, Observer {
             it?.let {
+                Log.d("detailbillfragment", it.toString())
                 binding.expenditureRecycler.adapter = adapter
                 adapter.data = it
             }
@@ -94,8 +95,9 @@ class DetailBillFragment : Fragment() {
 
         model.listOfIncomes.observe(viewLifecycleOwner, Observer {
             it?.let {
+                Log.d("detailbillfragment", it.toString())
                 binding.incomeRecycler.adapter = incomeAdapter
-                adapter.data = it
+                incomeAdapter.data = it
             }
         })
         model.loadIncomes(args.billId)

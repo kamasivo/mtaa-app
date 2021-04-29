@@ -14,7 +14,6 @@ import com.example.moneyapp.api.models.Transaction
 class IncomeAdapter: RecyclerView.Adapter<IncomeAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val sum: TextView = itemView.findViewById(R.id.income_sum)
-        val delete: TextView = itemView.findViewById(R.id.delete)
         val edit: TextView = itemView.findViewById(R.id.edit)
     }
 
@@ -29,12 +28,12 @@ class IncomeAdapter: RecyclerView.Adapter<IncomeAdapter.ViewHolder>() {
         holder.sum.text = item.sum.toString()
         holder.edit.id = item.id.toString().toInt()
 
-//        holder.edit.setOnClickListener {
-//            val navController = Navigation.findNavController(holder.itemView)
-//            Log.d("BillAdapter", holder.sum.id.toString())
-//            val action = HomeFragmentDirections.homeToBill(holder.edit.id)
-//            navController.navigate(action)
-//        }
+        holder.edit.setOnClickListener {
+            val navController = Navigation.findNavController(holder.itemView)
+            Log.d("BillAdapter", holder.edit.id.toString())
+            val action = DetailBillFragmentDirections.billToNavUpdateTransaction(holder.edit.id)
+            navController.navigate(action)
+        }
     }
 
 
