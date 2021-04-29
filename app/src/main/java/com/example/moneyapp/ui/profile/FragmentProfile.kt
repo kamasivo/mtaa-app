@@ -65,9 +65,11 @@ class Profile : Fragment() {
                 Log.d("Profile", "user loaded")
                 name.setText(it.fullName)
                 email.setText(it.emailAddress)
-                val decodedString: ByteArray = android.util.Base64.decode(it.image, android.util.Base64.DEFAULT)
-                val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
-                binding.profileImage.setImageBitmap(decodedByte)
+                if(it.image != null) {
+                    val decodedString: ByteArray = android.util.Base64.decode(it.image, android.util.Base64.DEFAULT)
+                    val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+                    binding.profileImage.setImageBitmap(decodedByte)
+                }
             }
         }
 
@@ -132,7 +134,7 @@ class Profile : Fragment() {
                         Log.d("fragmentProfile", "obrazok sa uspesne nahral")
                         binding.profileImage.setImageBitmap(selectedImage)
                     } else {
-                        // todo toast ze sa nepodarilo zmenit obrazok
+                        Toast.makeText(this.context, "Cannot change image, try again.", Toast.LENGTH_SHORT).show()
                     }
                 }
             }

@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#BA160C</color>
     <color name="green">#00FF00</color>
+    <color name="primaryColor">#03a9f4</color>
+    <color name="primaryLightColor">#67daff</color>
+    <color name="primaryDarkColor">#007ac1</color>
+    <color name="primaryTextColor">#000000</color>
 </resources>
