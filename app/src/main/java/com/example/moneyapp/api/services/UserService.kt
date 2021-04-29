@@ -117,7 +117,7 @@ class UserService {
                         if(response.isSuccessful) {
                             Log.d("UserService", response.body().toString())
                             val user = response.body()!!.user
-                            onResult(user[0])
+                            onResult(user)
                         }
                         else {
                             Log.d("UserService", response.message().toString())
