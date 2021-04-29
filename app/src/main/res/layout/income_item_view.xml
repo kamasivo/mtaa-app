@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
+android:layout_width="205dp"
 android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/income_name"
-        android:layout_width="180dp"
+        android:id="@+id/income_sum"
+        android:layout_width="80dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
         android:paddingTop="5dp"
@@ -16,17 +16,17 @@ android:layout_height="wrap_content">
         android:textSize="20sp"
         app:firstBaselineToTopHeight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.097"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Bill name" />
+        tools:text="20000" />
 
     <Button
         android:id="@+id/delete"
         android:layout_width="76dp"
         android:layout_height="33dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="72dp"
+        android:layout_marginEnd="45dp"
         android:layout_marginRight="72dp"
         android:text="Delete"
         android:textSize="10sp"
@@ -39,10 +39,11 @@ android:layout_height="wrap_content">
 
     <Button
         android:id="@+id/edit"
-        android:layout_width="37dp"
+        android:layout_width="30dp"
         android:layout_height="31dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:background="@android:drawable/ic_menu_edit"
         app:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"

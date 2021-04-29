@@ -25,7 +25,7 @@ class IncomeAdapter: RecyclerView.Adapter<IncomeAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         val res = holder.itemView.context.resources
-        holder.sum.id = item.categoryId.toString().toInt()
+//        holder.sum.id = item.categoryId.toString().toInt()
         holder.sum.text = item.sum.toString()
         holder.edit.id = item.id.toString().toInt()
 

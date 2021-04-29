@@ -13,7 +13,7 @@ import com.example.moneyapp.api.models.Transaction
 
 class ExpenditureAdapter: RecyclerView.Adapter<ExpenditureAdapter.ViewHolder>() {
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val sum: TextView = itemView.findViewById(R.id.income_sum)
+        val sum: TextView = itemView.findViewById(R.id.expenditure_sum)
         val delete: TextView = itemView.findViewById(R.id.delete)
         val edit: TextView = itemView.findViewById(R.id.edit)
     }
@@ -25,7 +25,7 @@ class ExpenditureAdapter: RecyclerView.Adapter<ExpenditureAdapter.ViewHolder>() 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         val res = holder.itemView.context.resources
-        holder.sum.id = item.categoryId.toString().toInt()
+//        holder.sum.id = item.categoryId.toString().toInt()
         holder.sum.text = item.sum.toString()
         holder.edit.id = item.id.toString().toInt()
 

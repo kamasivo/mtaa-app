@@ -22,7 +22,7 @@ class DetailBillFragment : Fragment() {
     private val binding get() = _binding!!
     val args: DetailBillFragmentArgs by navArgs()
     val adapter = ExpenditureAdapter()
-    val Incomeadapter = IncomeAdapter()
+    val incomeAdapter = IncomeAdapter()
 
 
 
@@ -84,14 +84,6 @@ class DetailBillFragment : Fragment() {
         model = ViewModelProvider(this).get(DetailBillViewModel::class.java)
         val view = binding.root
 
-        model.listOfIncomes.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                binding.incomeRecycler.adapter = Incomeadapter
-                adapter.data = it
-            }
-        })
-        model.loadIncomes(args.billId)
-
         model.listOfExpenditures.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.expenditureRecycler.adapter = adapter
@@ -99,6 +91,14 @@ class DetailBillFragment : Fragment() {
             }
         })
         model.loadExpenditures(args.billId)
+
+        model.listOfIncomes.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                binding.incomeRecycler.adapter = incomeAdapter
+                adapter.data = it
+            }
+        })
+        model.loadIncomes(args.billId)
 
         return view
     }

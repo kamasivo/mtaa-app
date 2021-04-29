@@ -120,10 +120,8 @@ class TransactionService {
                     override fun onResponse(call: Call<TransactionArray>, response: Response<TransactionArray>) {
                         Log.d("TransactionUserService", response.toString())
                         if(response.isSuccessful) {
-//                            Log.d("BillUserService", response.body().toString())
-                            val transactions = response.body()
-//                            Log.d("TransactionUserService", transactions.toString())
-                            onResult(transactions)
+                            Log.d("BillUserService", response.body().toString())
+                            onResult(response.body())
                         }
                         else {
                             Log.d("TransactionUserService", response.code().toString())
@@ -132,27 +130,25 @@ class TransactionService {
                 }
         )
     }
-    fun getExpenditure(billId: Int, onResult: (TransactionArray?) -> Unit){
+    fun getExpenditure(billId: Int, onResult: (ExpenditureTransactionArray?) -> Unit){
         Log.d("TransactionUserService", "Posielam request")
         val service_builder = ServiceBuilder()
         val retrofit = service_builder.buildService(GetExpenditureInterface::class.java)
         retrofit.getExpenditures(billId).enqueue(
-                object : Callback<TransactionArray> {
-                    override fun onFailure(call: Call<TransactionArray>, t: Throwable) {
+                object : Callback<ExpenditureTransactionArray> {
+                    override fun onFailure(call: Call<ExpenditureTransactionArray>, t: Throwable) {
                         Log.d("TransactionUserService", "failed to response")
                         Log.d("TransactionUserService", t.toString())
                         onResult(null)
                     }
-                    override fun onResponse(call: Call<TransactionArray>, response: Response<TransactionArray>) {
+                    override fun onResponse(call: Call<ExpenditureTransactionArray>, response: Response<ExpenditureTransactionArray>) {
                         Log.d("TransactionUserService", response.toString())
                         if(response.isSuccessful) {
-//                            Log.d("TransactionUserService", response.body().toString())
-                            val transactions = response.body()
-//                            Log.d("TransactionUserService", Transactions.toString())
-                            onResult(transactions)
+                            Log.d("TransactionUserService", response.body().toString())
+                            onResult(response.body())
                         }
                         else {
-                            Log.d("TransactionUserService", response.code().toString())
+                            Log.d("TransactionUserService", response.message().toString())
                         }
                     }
                 }
