@@ -41,7 +41,7 @@ class ProfileViewModel() : ViewModel() {
                 if (it == "OK") {
                     _profileResult.value = ProfileResult(success = true)
                 } else {
-                    _profileResult.value = ProfileResult(error = it)
+                    _profileResult.value = ProfileResult(error = "You entered wrong password")
                 }
             }
         }

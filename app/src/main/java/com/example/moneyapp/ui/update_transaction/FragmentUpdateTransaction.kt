@@ -47,7 +47,7 @@ class UpdateTransaction : Fragment() {
             }
             if (newBillResult.success) {
                 val navController = Navigation.findNavController(view)
-                navController.navigate(R.id.newBill_to_home)
+                navController.navigate(R.id.nav_home)
             }
 
         })
