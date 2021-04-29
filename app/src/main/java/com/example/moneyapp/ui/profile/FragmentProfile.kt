@@ -107,6 +107,7 @@ class Profile : Fragment() {
         }
 
         choose.setOnClickListener {
+            selectedImage = null
             Intent(Intent.ACTION_PICK).also {
                 it.type = "image/*"
                 startActivityForResult(it, REQUEST_CODE_IMAGE_PICKER)

@@ -111,10 +111,12 @@ class CreateExpenditure : Fragment() {
         })
 
         create.setOnClickListener {
-            val billChoose: Item = spinnerBill.selectedItem as Item
-            val categoryChoose: Item = spinnerCategory.selectedItem as Item
-            loading.visibility = View.VISIBLE
-            model.createExpenditure(sum.text.toString().toInt(), billChoose.id.toString().toInt(), categoryChoose.id.toString().toInt())
+            if(spinnerBill.selectedItem != null && spinnerCategory.selectedItem != null) {
+                val billChoose: Item = spinnerBill.selectedItem as Item
+                val categoryChoose: Item = spinnerCategory.selectedItem as Item
+                loading.visibility = View.VISIBLE
+                model.createExpenditure(sum.text.toString().toInt(), billChoose.id.toString().toInt(), categoryChoose.id.toString().toInt())
+            }
         }
 //        }
     }

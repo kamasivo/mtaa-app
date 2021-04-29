@@ -57,10 +57,12 @@ class SplitIncome : Fragment() {
         })
 
         create.setOnClickListener {
-            binding.loading.visibility = View.VISIBLE
-            val categoryChoose: Item = spinnerCategory.selectedItem as Item
-            Log.d("categoryid", categoryChoose.id.toString())
-            model.splitIncome(sum.text.toString().toInt(), categoryChoose.id)
+            if(spinnerCategory.selectedItem != null) {
+                binding.loading.visibility = View.VISIBLE
+                val categoryChoose: Item = spinnerCategory.selectedItem as Item
+                Log.d("categoryid", categoryChoose.id.toString())
+                model.splitIncome(sum.text.toString().toInt(), categoryChoose.id)
+            }
         }
     }
 
