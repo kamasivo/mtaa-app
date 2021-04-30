@@ -7,8 +7,11 @@ import androidx.lifecycle.ViewModel
 import com.example.moneyapp.R
 import com.example.moneyapp.api.models.NewBill
 import com.example.moneyapp.api.services.BillService
+import com.example.moneyapp.database.getDatabase
+import com.example.moneyapp.repository.BillRepository
 
 class NewBillViewModel() : ViewModel() {
+    private val billRepository = BillRepository(getDatabase())
     private val _newBillForm = MutableLiveData<NewBillFormState>()
     val newBillFormState: LiveData<NewBillFormState> = _newBillForm
 
@@ -25,6 +28,7 @@ class NewBillViewModel() : ViewModel() {
             description = description,
             sum = sum
         )
+        billRepository.inserBillToRepository(billInfo)
         apiService.addBill(billInfo) {
             if (it != null) {
                 Log.d("NewBillViewModel", it)

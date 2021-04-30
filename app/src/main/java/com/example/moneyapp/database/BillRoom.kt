@@ -6,20 +6,23 @@ import com.example.moneyapp.GlobalApplication
 
 @Dao
 interface BillDao {
-    @Query("SELECT * FROM bill")
-    fun getBills(): LiveData<List<Bill>>
+    @Query("SELECT * FROM billEntity")
+    fun getBills(): LiveData<List<BillEntity>>
 
     @Insert
-    fun insertAll(bill: List<Bill>)
+    fun insertAll(bill: List<BillEntity>)
 
-    @Query("DELETE FROM bill")
+    @Insert
+    fun insertOne(bill: BillEntity)
+
+    @Query("DELETE FROM billEntity")
     fun deleteAll()
 
-    @Query("DELETE FROM bill WHERE id IN (:billId)")
+    @Query("DELETE FROM billEntity WHERE id IN (:billId)")
     fun delete(billId: Int)
 }
 
-@Database(entities = [Bill::class], version = 1)
+@Database(entities = [BillEntity::class], version = 1)
 abstract class BillsDatabase: RoomDatabase() {
     abstract val billDao: BillDao
 }
