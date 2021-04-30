@@ -10,9 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moneyapp.R
 import com.example.moneyapp.api.models.Bill
 import com.example.moneyapp.api.services.BillService
-import com.example.moneyapp.api.services.CategoryService
+import com.example.moneyapp.database.getDatabase
+import com.example.moneyapp.repository.BillRepository
 
 class BillAdapter: RecyclerView.Adapter<BillAdapter.ViewHolder>() {
+    private val billRepository = BillRepository(getDatabase())
+    val bills = billRepository.listOfBills
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val billName: TextView = itemView.findViewById(R.id.bill_name)
         val sum: TextView = itemView.findViewById(R.id.sum)
@@ -39,19 +42,19 @@ class BillAdapter: RecyclerView.Adapter<BillAdapter.ViewHolder>() {
         }
 
         holder.delete.setOnClickListener {
-            deleteBill(holder.billName.id)
+            billRepository.deleteBill(holder.billName.id)
+//            deleteBill(holder.billName.id)
             val navController = Navigation.findNavController(holder.itemView)
             navController.navigate(R.id.action_home)
         }
     }
 
-    fun deleteBill(categoryId: Int) {
-        Log.d("NewTypeViewModel", "newType initiated");
-        val apiService = BillService()
-
-        apiService.deleteBill(categoryId) {
-        }
-    }
+//    fun deleteBill(categoryId: Int) {
+//        Log.d("NewTypeViewModel", "newType initiated");
+//        val apiService = BillService()
+//
+//        apiService.deleteBill(categoryId) {}
+//    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

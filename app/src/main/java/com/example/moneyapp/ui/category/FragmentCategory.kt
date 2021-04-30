@@ -16,7 +16,6 @@ import androidx.navigation.Navigation
 import com.example.moneyapp.GlobalApplication
 import com.example.moneyapp.R
 import com.example.moneyapp.databinding.CreateExpenditureCategoryBinding
-import com.example.moneyapp.ui.add_income.CreateIncomeViewModel
 import com.example.moneyapp.ui.add_income.Item
 
 

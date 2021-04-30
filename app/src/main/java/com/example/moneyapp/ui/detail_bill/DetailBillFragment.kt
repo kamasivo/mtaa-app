@@ -13,8 +13,6 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.moneyapp.R
 import com.example.moneyapp.databinding.DetailBillBinding
-import com.example.moneyapp.databinding.HomeRecyclerBinding
-import com.example.moneyapp.ui.home.BillAdapter
 
 class DetailBillFragment : Fragment() {
     private lateinit var model: DetailBillViewModel

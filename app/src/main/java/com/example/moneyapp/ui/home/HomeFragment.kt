@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.moneyapp.api.models.Bill
 import com.example.moneyapp.databinding.HomeRecyclerBinding
 
 class HomeFragment : Fragment() {
@@ -23,18 +24,14 @@ class HomeFragment : Fragment() {
         _binding = HomeRecyclerBinding.inflate(inflater, container, false)
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         val view = binding.root
-
-        homeViewModel.listOfBills.observe(viewLifecycleOwner, Observer {
-            it?.let {
+        homeViewModel.bills.observe(viewLifecycleOwner, Observer<List<Bill>> { bills ->
+            bills?.apply {
                 binding.billsRecycler.adapter = adapter
-                adapter.data = it
+                adapter.data = bills
             }
         })
         homeViewModel.loadBills()
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        homeViewModel.loadBills()
-    }
 }
