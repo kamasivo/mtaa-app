@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.moneyapp.R
+import com.example.moneyapp.api.models.Category
 import com.example.moneyapp.databinding.CreateIncomeCategoryBinding
 
 
@@ -36,10 +37,10 @@ class Type : Fragment() {
         newTypeViewModel = ViewModelProvider(this).get(NewTypeViewModel::class.java)
         val view = binding.root
 
-        newTypeViewModel.listOfIncomeCategory.observe(viewLifecycleOwner, Observer {
-            it?.let {
+        newTypeViewModel.incomeCategories.observe(viewLifecycleOwner, Observer<List<Category>> { incomeCategories ->
+            incomeCategories?.apply {
                 binding.incomeCategoriesRecycler.adapter = adapter
-                adapter.data = it
+                adapter.data = incomeCategories
             }
         })
         newTypeViewModel.loadIncomeCategories()

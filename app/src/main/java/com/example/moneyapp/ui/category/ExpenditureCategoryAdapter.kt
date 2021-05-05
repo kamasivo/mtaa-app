@@ -11,8 +11,12 @@ import com.example.moneyapp.R
 import com.example.moneyapp.api.models.Category
 import com.example.moneyapp.api.models.ExpenditureCategory
 import com.example.moneyapp.api.services.CategoryService
+import com.example.moneyapp.database.getExpenditureCategoryDatabase
+import com.example.moneyapp.repository.ExpenditureCategoryRepository
 
 class ExpenditureCategoryAdapter: RecyclerView.Adapter<ExpenditureCategoryAdapter.ViewHolder>() {
+    private val expenditureCategoryRepository = ExpenditureCategoryRepository(getExpenditureCategoryDatabase())
+    val expenditureCategories = expenditureCategoryRepository.listOfExpenditureCategories
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val expenditureCategoryName: TextView = itemView.findViewById(R.id.Category_name)
         val delete: TextView = itemView.findViewById(R.id.delete)
@@ -29,18 +33,12 @@ class ExpenditureCategoryAdapter: RecyclerView.Adapter<ExpenditureCategoryAdapte
         holder.expenditureCategoryName.id = item.id.toString().toInt()
 
         holder.delete.setOnClickListener {
-            deleteCategory(holder.expenditureCategoryName.id)
+            expenditureCategoryRepository.deleteExpenditureCategory(holder.expenditureCategoryName.id)
             val navController = Navigation.findNavController(holder.itemView)
             navController.navigate(R.id.action_category)
         }
     }
-    fun deleteCategory(categoryId: Int) {
-        Log.d("NewTypeViewModel", "newType initiated");
-        val apiService = CategoryService()
 
-        apiService.deleteCategory(categoryId) {
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

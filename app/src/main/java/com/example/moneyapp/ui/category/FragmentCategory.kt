@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.moneyapp.GlobalApplication
 import com.example.moneyapp.R
+import com.example.moneyapp.api.models.ExpenditureCategory
 import com.example.moneyapp.databinding.CreateExpenditureCategoryBinding
 import com.example.moneyapp.ui.add_income.Item
 
@@ -36,10 +37,10 @@ class Category : Fragment() {
         val view = binding.root
         model.loadBills()
 
-        model.listOfExpenditureCategory.observe(viewLifecycleOwner, Observer {
-            it?.let {
+        model.expenditureCategories.observe(viewLifecycleOwner, Observer<List<ExpenditureCategory>> { expenditureCategories ->
+            expenditureCategories?.apply {
                 binding.expenditureCategoriesRecycler.adapter = adapter
-                adapter.data = it
+                adapter.data = expenditureCategories
             }
         })
         model.loadExpenditureCategories()

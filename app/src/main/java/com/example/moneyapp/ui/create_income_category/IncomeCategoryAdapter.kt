@@ -12,8 +12,14 @@ import com.example.moneyapp.api.models.Category
 import com.example.moneyapp.api.models.NewType
 import com.example.moneyapp.api.services.CategoryService
 import com.example.moneyapp.api.services.PostTypeService
+import com.example.moneyapp.database.getExpenditureCategoryDatabase
+import com.example.moneyapp.database.getIncomeCategoryDatabase
+import com.example.moneyapp.repository.ExpenditureCategoryRepository
+import com.example.moneyapp.repository.IncomeCategoryRepository
 
 class IncomeCategoryAdapter: RecyclerView.Adapter<IncomeCategoryAdapter.ViewHolder>() {
+    private val incomeCategoryRepository = IncomeCategoryRepository(getIncomeCategoryDatabase())
+    val incomeCategories = incomeCategoryRepository.listOfIncomeCategories
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val incomeCategoryName: TextView = itemView.findViewById(R.id.Category_name)
         val delete: TextView = itemView.findViewById(R.id.delete)
@@ -30,28 +36,11 @@ class IncomeCategoryAdapter: RecyclerView.Adapter<IncomeCategoryAdapter.ViewHold
         holder.incomeCategoryName.id = item.id.toString().toInt()
 
         holder.delete.setOnClickListener {
-            deleteCategory(holder.incomeCategoryName.id)
+            incomeCategoryRepository.deleteIncomeCategory(holder.incomeCategoryName.id)
             val navController = Navigation.findNavController(holder.itemView)
             navController.navigate(R.id.action_type)
         }
     }
-
-    fun deleteCategory(categoryId: Int) {
-        Log.d("NewTypeViewModel", "newType initiated");
-        val apiService = CategoryService()
-
-        apiService.deleteCategory(categoryId) {
-//            if (it != null) {
-//                Log.d("NewTypeViewModel", it)
-//                if (it == "OK") {
-//                    _newTypeResult.value = NewTypeResult(success = true)
-//                } else {
-//                    _newTypeResult.value = NewTypeResult(error = it)
-//                }
-//            }
-        }
-    }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)

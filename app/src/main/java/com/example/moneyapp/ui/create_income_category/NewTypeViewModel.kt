@@ -11,22 +11,27 @@ import com.example.moneyapp.api.models.NewType
 import com.example.moneyapp.api.services.BillService
 import com.example.moneyapp.api.services.CategoryService
 import com.example.moneyapp.api.services.PostTypeService
+import com.example.moneyapp.database.getDatabase
+import com.example.moneyapp.database.getExpenditureCategoryDatabase
+import com.example.moneyapp.database.getIncomeCategoryDatabase
+import com.example.moneyapp.repository.ExpenditureCategoryRepository
+import com.example.moneyapp.repository.IncomeCategoryRepository
 
 class NewTypeViewModel() : ViewModel() {
 
-    val listOfIncomeCategory: MutableLiveData<List<Category>> by lazy {
-        MutableLiveData<List<Category>>()
+    private val incomeCategoryRepository = IncomeCategoryRepository(getIncomeCategoryDatabase())
+    val incomeCategories = incomeCategoryRepository.listOfIncomeCategories
+
+    init {
+        refreshDataFromRepository()
     }
 
     fun loadIncomeCategories() {
-        val apiService = CategoryService()
+        Log.d("homeviewModel", incomeCategoryRepository.listOfIncomeCategories.value.toString())
+    }
 
-        apiService.getIncomeCategories {
-            if (it != null) {
-                Log.d("HomeViewModel", "bills loaded")
-                listOfIncomeCategory.value = it.incomeCategories
-            }
-        }
+    private fun refreshDataFromRepository() {
+        incomeCategoryRepository.refreshIncomeCategories()
     }
 
     private val _newTypeForm = MutableLiveData<NewTypeFormState>()
@@ -42,6 +47,7 @@ class NewTypeViewModel() : ViewModel() {
         val typeInfo = NewType(
             name = name
         )
+        incomeCategoryRepository.insertIncomeCategoryToRepository(typeInfo)
         apiService.addType(typeInfo) {
             if (it != null) {
                 Log.d("NewTypeViewModel", it)

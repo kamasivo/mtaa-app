@@ -10,22 +10,33 @@ import com.example.moneyapp.api.models.ExpenditureCategory
 import com.example.moneyapp.api.models.NewCategory
 import com.example.moneyapp.api.services.BillService
 import com.example.moneyapp.api.services.CategoryService
+import com.example.moneyapp.database.getDatabase
+import com.example.moneyapp.database.getExpenditureCategoryDatabase
+import com.example.moneyapp.repository.BillRepository
+import com.example.moneyapp.repository.ExpenditureCategoryRepository
 
 class NewCategoryViewModel() : ViewModel() {
 
-    val listOfExpenditureCategory: MutableLiveData<List<ExpenditureCategory>> by lazy {
-        MutableLiveData<List<ExpenditureCategory>>()
+//    private val billRepository = BillRepository(getDatabase())
+//    val bills = billRepository.listOfBills
+//
+//    init {
+//        refreshDataFromRepository()
+//    }
+
+    private val expenditureCategoryRepository = ExpenditureCategoryRepository(getExpenditureCategoryDatabase())
+    val expenditureCategories = expenditureCategoryRepository.listOfExpenditureCategories
+
+    init {
+        refreshCategoryDataFromRepository()
     }
 
     fun loadExpenditureCategories() {
-        val apiService = CategoryService()
+        Log.d("homeviewModel", expenditureCategoryRepository.listOfExpenditureCategories.value.toString())
+    }
 
-        apiService.getExpenditureCategories {
-            if (it != null) {
-                Log.d("HomeViewModel", "bills loaded")
-                listOfExpenditureCategory.value = it.expenditureCategories
-            }
-        }
+    private fun refreshCategoryDataFromRepository() {
+        expenditureCategoryRepository.refreshCategories()
     }
 
     private val _newCategoryForm = MutableLiveData<NewCategoryFormState>()
@@ -46,6 +57,7 @@ class NewCategoryViewModel() : ViewModel() {
             name = name,
             billId = billId
         )
+        expenditureCategoryRepository.insertExpenditureCategoryToRepository(categoryInfo)
         apiService.addCategory(categoryInfo) {
             if (it != null) {
                 Log.d("NewCategoryViewModel", it)
@@ -59,6 +71,7 @@ class NewCategoryViewModel() : ViewModel() {
     }
 
     fun loadBills() {
+//        Log.d("homeviewModel", billRepository.listOfBills.value.toString())
         val apiService = BillService()
 
         apiService.getbill {
@@ -68,4 +81,10 @@ class NewCategoryViewModel() : ViewModel() {
             }
         }
     }
+
+//    private fun refreshDataFromRepository() {
+//        billRepository.refreshBills()
+//    }
+
+
 }
