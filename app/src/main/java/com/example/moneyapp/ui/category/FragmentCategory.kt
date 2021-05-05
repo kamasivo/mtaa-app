@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.moneyapp.GlobalApplication
 import com.example.moneyapp.R
+import com.example.moneyapp.api.models.Bill
 import com.example.moneyapp.api.models.ExpenditureCategory
 import com.example.moneyapp.databinding.CreateExpenditureCategoryBinding
 import com.example.moneyapp.ui.add_income.Item
@@ -50,7 +51,7 @@ class Category : Fragment() {
     }
 
     private fun setObservers() {
-        model.listOfBills.observe(viewLifecycleOwner, Observer {
+        model.bills.observe(viewLifecycleOwner, Observer {
             it?.let {
                 val items: ArrayList<Item> = ArrayList()
 
@@ -70,6 +71,12 @@ class Category : Fragment() {
                 spinnerBill.adapter = adapter
             }
         })
+//        model.bills.observe(viewLifecycleOwner, Observer<List<Bill>> { bills ->
+//            bills?.apply {
+//                binding.billsRecycler.adapter = adapter
+//                adapter.data = bills
+//            }
+//        })
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val name = binding.nameCategory

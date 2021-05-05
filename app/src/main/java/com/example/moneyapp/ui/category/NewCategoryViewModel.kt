@@ -17,12 +17,9 @@ import com.example.moneyapp.repository.ExpenditureCategoryRepository
 
 class NewCategoryViewModel() : ViewModel() {
 
-//    private val billRepository = BillRepository(getDatabase())
-//    val bills = billRepository.listOfBills
-//
-//    init {
-//        refreshDataFromRepository()
-//    }
+    private val billRepository = BillRepository(getDatabase())
+    val bills = billRepository.listOfBills
+
 
     private val expenditureCategoryRepository = ExpenditureCategoryRepository(getExpenditureCategoryDatabase())
     val expenditureCategories = expenditureCategoryRepository.listOfExpenditureCategories
