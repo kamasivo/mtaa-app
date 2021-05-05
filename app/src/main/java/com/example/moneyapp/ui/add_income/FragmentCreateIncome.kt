@@ -39,7 +39,7 @@ class CreateIncome : Fragment(){
     }
 
     private fun setObservers() {
-        model.listOfBills.observe(viewLifecycleOwner, Observer {
+        model.bills.observe(viewLifecycleOwner, Observer {
             it?.let {
                 val items: ArrayList<Item> = ArrayList()
 
@@ -60,7 +60,7 @@ class CreateIncome : Fragment(){
             }
         })
 
-        model.listOfCategories.observe(viewLifecycleOwner, Observer {
+        model.incomeCategories.observe(viewLifecycleOwner, Observer {
             it?.let {
                 val items: ArrayList<Item> = ArrayList()
 

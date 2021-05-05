@@ -22,6 +22,21 @@ data class IncomeCategoryEntity(
         @PrimaryKey val id: Int,
         val name: String)
 
+@Entity
+data class ExpenditureEntity(
+        @PrimaryKey val id: Int,
+        val billId: Int,
+        val categoryId: Int,
+        val sum: Double?)
+
+@Entity
+data class IncomeEntity(
+        @PrimaryKey val id: Int,
+        val billId: Int,
+        val categoryId: Int,
+        val sum: Double?)
+
+
 
 /**
  * Map DatabaseVideos to domain entities
@@ -51,5 +66,25 @@ fun List<IncomeCategoryEntity>.asIncomeCategoryModel(): List<com.example.moneyap
         com.example.moneyapp.api.models.Category(
                 id = it.id,
                 name = it.name)
+    }
+}
+
+fun List<ExpenditureEntity>.asExpenditureModel(): List<com.example.moneyapp.api.models.Transaction> {
+    return map {
+        com.example.moneyapp.api.models.Transaction(
+                id = it.id,
+                sum = it.sum,
+                billId = it.billId,
+                categoryId = it.categoryId)
+    }
+}
+
+fun List<IncomeEntity>.asIncomeModel(): List<com.example.moneyapp.api.models.Transaction> {
+    return map {
+        com.example.moneyapp.api.models.Transaction(
+                id = it.id,
+                sum = it.sum,
+                billId = it.billId,
+                categoryId = it.categoryId)
     }
 }

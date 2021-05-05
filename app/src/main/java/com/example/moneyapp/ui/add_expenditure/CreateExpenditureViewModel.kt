@@ -11,10 +11,39 @@ import com.example.moneyapp.api.models.NewExpenditure
 import com.example.moneyapp.api.services.BillService
 import com.example.moneyapp.api.services.CategoryService
 import com.example.moneyapp.api.services.TransactionService
+import com.example.moneyapp.database.getDatabase
+import com.example.moneyapp.database.getExpenditureCategoryDatabase
+import com.example.moneyapp.database.getExpenditureDatabase
+import com.example.moneyapp.database.getIncomeDatabase
+import com.example.moneyapp.repository.BillRepository
+import com.example.moneyapp.repository.ExpenditureCategoryRepository
+import com.example.moneyapp.repository.ExpenditureRepository
+import com.example.moneyapp.repository.IncomeRepository
 
 class CreateExpenditureViewModel() : ViewModel() {
+    private val expenditureRepository = ExpenditureRepository(getExpenditureDatabase())
+    private val billRepository = BillRepository(getDatabase())
+    val bills = billRepository.listOfBills
+
+    private val expenditureCategoryRepository = ExpenditureCategoryRepository(getExpenditureCategoryDatabase())
+    val expenditureCategories = expenditureCategoryRepository.listOfExpenditureCategories
+
     private val _createExpenditureResult = MutableLiveData<CreateExpenditureResult>()
     val createExpenditureResult: LiveData<CreateExpenditureResult> = _createExpenditureResult
+
+//    private val expenditureRepository = ExpenditureRepository(getExpenditureDatabase())
+//    val expenditures = expenditureRepository.listOfExpenditures
+//
+//    init {
+//        refreshDataFromRepository()
+//    }
+//    fun loadExpenditures() {
+//        Log.d("homeviewModel", expenditureRepository.listOfExpenditures.value.toString())
+//    }
+//
+//    private fun refreshDataFromRepository(billId: Int) {
+//        expenditureRepository.refreshTransactions(billId)
+//    }
 
     val listOfBills: MutableLiveData<List<Bill>> by lazy {
         MutableLiveData<List<Bill>>()

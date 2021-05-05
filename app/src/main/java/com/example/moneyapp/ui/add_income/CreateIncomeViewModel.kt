@@ -10,10 +10,39 @@ import com.example.moneyapp.api.models.NewIncome
 import com.example.moneyapp.api.services.BillService
 import com.example.moneyapp.api.services.CategoryService
 import com.example.moneyapp.api.services.TransactionService
+import com.example.moneyapp.database.getDatabase
+import com.example.moneyapp.database.getExpenditureCategoryDatabase
+import com.example.moneyapp.database.getIncomeCategoryDatabase
+import com.example.moneyapp.database.getIncomeDatabase
+import com.example.moneyapp.repository.BillRepository
+import com.example.moneyapp.repository.ExpenditureCategoryRepository
+import com.example.moneyapp.repository.IncomeCategoryRepository
+import com.example.moneyapp.repository.IncomeRepository
 
 class CreateIncomeViewModel() : ViewModel() {
+    private val incomeRepository = IncomeRepository(getIncomeDatabase())
+    private val billRepository = BillRepository(getDatabase())
+    val bills = billRepository.listOfBills
+
+    private val incomeCategoryRepository = IncomeCategoryRepository(getIncomeCategoryDatabase())
+    val incomeCategories = incomeCategoryRepository.listOfIncomeCategories
+
     private val _createIncomeResult = MutableLiveData<CreateIncomeResult>()
     val createIncomeResult: LiveData<CreateIncomeResult> = _createIncomeResult
+
+//    private val incomeRepository = IncomeRepository(getIncomeDatabase())
+//    val incomes = incomeRepository.listOfIncomes
+//
+//    init {
+//        refreshDataFromRepository()
+//    }
+//    fun loadIncomes() {
+//        Log.d("homeviewModel", incomeRepository.listOfIncomes.value.toString())
+//    }
+//
+//    private fun refreshDataFromRepository(billId: Int) {
+//        incomeRepository.refreshIncomeCategories(billId)
+//    }
 
     val listOfBills: MutableLiveData<List<Bill>> by lazy {
         MutableLiveData<List<Bill>>()
@@ -31,6 +60,7 @@ class CreateIncomeViewModel() : ViewModel() {
             billId = billId,
             categoryId = categoryId
         )
+        incomeRepository.insertIncomeToRepository(incomeInfo)
         apiService.addIncome(incomeInfo) {
             if (it != null) {
                 Log.d("CreateIncomeViewModel", it)

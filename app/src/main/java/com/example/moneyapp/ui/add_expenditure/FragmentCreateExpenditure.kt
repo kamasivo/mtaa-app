@@ -40,7 +40,7 @@ class CreateExpenditure : Fragment() {
     }
 
     private fun setObservers() {
-        model.listOfBills.observe(viewLifecycleOwner, Observer {
+        model.bills.observe(viewLifecycleOwner, Observer {
             it?.let {
                 val items: ArrayList<Item> = ArrayList()
 
@@ -61,7 +61,7 @@ class CreateExpenditure : Fragment() {
             }
         })
 
-        model.listOfCategories.observe(viewLifecycleOwner, Observer {
+        model.expenditureCategories.observe(viewLifecycleOwner, Observer {
             it?.let {
                 val items: ArrayList<Item> = ArrayList()
 

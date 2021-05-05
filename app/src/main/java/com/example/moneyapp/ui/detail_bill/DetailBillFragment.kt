@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.moneyapp.R
+import com.example.moneyapp.api.models.Transaction
 import com.example.moneyapp.databinding.DetailBillBinding
 
 class DetailBillFragment : Fragment() {
@@ -82,20 +83,18 @@ class DetailBillFragment : Fragment() {
         model = ViewModelProvider(this).get(DetailBillViewModel::class.java)
         val view = binding.root
 
-        model.listOfExpenditures.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                Log.d("detailbillfragment", it.toString())
+        model.expenditures.observe(viewLifecycleOwner, Observer<List<Transaction>> { expenditures ->
+            expenditures?.apply {
                 binding.expenditureRecycler.adapter = adapter
-                adapter.data = it
+                adapter.data = expenditures
             }
         })
         model.loadExpenditures(args.billId)
 
-        model.listOfIncomes.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                Log.d("detailbillfragment", it.toString())
+        model.incomes.observe(viewLifecycleOwner, Observer<List<Transaction>> {incomes ->
+            incomes?.apply{
                 binding.incomeRecycler.adapter = incomeAdapter
-                incomeAdapter.data = it
+                incomeAdapter.data = incomes
             }
         })
         model.loadIncomes(args.billId)

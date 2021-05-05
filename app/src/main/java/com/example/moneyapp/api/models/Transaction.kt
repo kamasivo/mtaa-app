@@ -4,5 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Transaction (
         @SerializedName("id") val id: Int?,
-        @SerializedName("sum") val sum: Double?
+        @SerializedName("sum") val sum: Double?,
+        @SerializedName("billId") val billId: Int?,
+        @SerializedName("categoryId") val categoryId: Int?
 )

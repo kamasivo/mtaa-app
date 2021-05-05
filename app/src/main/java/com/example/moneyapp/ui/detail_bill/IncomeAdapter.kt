@@ -10,8 +10,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moneyapp.R
 import com.example.moneyapp.api.models.Bill
 import com.example.moneyapp.api.models.Transaction
+import com.example.moneyapp.database.getExpenditureDatabase
+import com.example.moneyapp.database.getIncomeDatabase
+import com.example.moneyapp.repository.ExpenditureRepository
+import com.example.moneyapp.repository.IncomeRepository
 
 class IncomeAdapter: RecyclerView.Adapter<IncomeAdapter.ViewHolder>() {
+
+    private val incomeRepository = IncomeRepository(getIncomeDatabase())
+    val incomes = incomeRepository.listOfIncomes
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val sum: TextView = itemView.findViewById(R.id.income_sum)
         val edit: TextView = itemView.findViewById(R.id.edit)
