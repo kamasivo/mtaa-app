@@ -45,8 +45,7 @@ class ExpenditureRepository(private val database: ExpendituresDatabase) {
                 ExpenditureEntity(
                     id = it.id!!,
                     sum = it.sum!!,
-                    billId = it.billId!!,
-                    categoryId = it.categoryId!!
+                    billId = it.billId!!
                 )
             }
             Log.d("expenditurerepository", expenditureEntity.toString())
@@ -62,8 +61,6 @@ class ExpenditureRepository(private val database: ExpendituresDatabase) {
             id = randId,
             sum = expenditure.sum.toString().toDouble(),
             billId = expenditure.billId!!,
-            categoryId = expenditure.categoryId!!
-
         )
 
         Log.d("expenditurerepository", expenditureEntity.toString())

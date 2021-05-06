@@ -60,7 +60,7 @@ class CreateIncomeViewModel() : ViewModel() {
             billId = billId,
             categoryId = categoryId
         )
-        incomeRepository.insertIncomeToRepository(incomeInfo)
+        Log.d("CreateIncomeViewModel", incomeInfo.toString())
         apiService.addIncome(incomeInfo) {
             if (it != null) {
                 Log.d("CreateIncomeViewModel", it)
@@ -71,6 +71,7 @@ class CreateIncomeViewModel() : ViewModel() {
                 }
             }
         }
+        incomeRepository.insertIncomeToRepository(incomeInfo)
     }
 
     fun loadBills() {

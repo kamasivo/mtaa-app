@@ -26,14 +26,12 @@ data class IncomeCategoryEntity(
 data class ExpenditureEntity(
         @PrimaryKey val id: Int,
         val billId: Int,
-        val categoryId: Int,
         val sum: Double?)
 
 @Entity
 data class IncomeEntity(
         @PrimaryKey val id: Int,
         val billId: Int,
-        val categoryId: Int,
         val sum: Double?)
 
 
@@ -75,7 +73,7 @@ fun List<ExpenditureEntity>.asExpenditureModel(): List<com.example.moneyapp.api.
                 id = it.id,
                 sum = it.sum,
                 billId = it.billId,
-                categoryId = it.categoryId)
+                categoryId = 1)
     }
 }
 
@@ -85,6 +83,6 @@ fun List<IncomeEntity>.asIncomeModel(): List<com.example.moneyapp.api.models.Tra
                 id = it.id,
                 sum = it.sum,
                 billId = it.billId,
-                categoryId = it.categoryId)
+                categoryId = 1)
     }
 }

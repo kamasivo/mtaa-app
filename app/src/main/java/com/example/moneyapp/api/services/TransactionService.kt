@@ -107,48 +107,49 @@ class TransactionService {
         )
     }
     fun getIncome(billId: Int, onResult: (TransactionArray?) -> Unit){
-        Log.d("TransactionUserService", "Posielam request")
+        Log.d("TransactionUserServiceInc", "Posielam request")
         val service_builder = ServiceBuilder()
         val retrofit = service_builder.buildService(GetIncomeInterface::class.java)
         retrofit.getIncomes(billId).enqueue(
                 object : Callback<TransactionArray> {
                     override fun onFailure(call: Call<TransactionArray>, t: Throwable) {
-                        Log.d("TransactionUserService", "failed to response")
-                        Log.d("TransactionUserService", t.toString())
+                        Log.d("TransactionUserServiceInc", "failed to response")
+                        Log.d("TransactionUserServiceInc", t.toString())
                         onResult(null)
                     }
                     override fun onResponse(call: Call<TransactionArray>, response: Response<TransactionArray>) {
-                        Log.d("TransactionUserService", response.toString())
+                        Log.d("TransactionUserServiceInc", response.toString())
                         if(response.isSuccessful) {
-                            Log.d("TransactionUserService", response.body().toString())
+                            Log.d("TransactionUserServiceInc", response.body().toString())
                             onResult(response.body())
                         }
                         else {
-                            Log.d("TransactionUserService", response.code().toString())
+                            Log.d("TransactionUserServiceInc", response.code().toString())
                         }
                     }
                 }
         )
     }
     fun getExpenditure(billId: Int, onResult: (ExpenditureTransactionArray?) -> Unit){
-        Log.d("TransactionUserService", "Posielam request")
+        Log.d("TransactionUserServiceExp", "Posielam request")
+        Log.d("TransactionUserServiceExp", billId.toString())
         val service_builder = ServiceBuilder()
         val retrofit = service_builder.buildService(GetExpenditureInterface::class.java)
         retrofit.getExpenditures(billId).enqueue(
                 object : Callback<ExpenditureTransactionArray> {
                     override fun onFailure(call: Call<ExpenditureTransactionArray>, t: Throwable) {
-                        Log.d("TransactionUserService", "failed to response")
-                        Log.d("TransactionUserService", t.toString())
+                        Log.d("TransactionUserServiceExp", "failed to response")
+                        Log.d("TransactionUserServiceExp", t.toString())
                         onResult(null)
                     }
                     override fun onResponse(call: Call<ExpenditureTransactionArray>, response: Response<ExpenditureTransactionArray>) {
-                        Log.d("TransactionUserService", response.toString())
+                        Log.d("TransactionUserServiceExp", response.toString())
                         if(response.isSuccessful) {
-                            Log.d("TransactionUserService", response.body().toString())
+                            Log.d("TransactionUserServiceExp", response.body().toString())
                             onResult(response.body())
                         }
                         else {
-                            Log.d("TransactionUserService", response.message().toString())
+                            Log.d("TransactionUserServiceExp", response.message().toString())
                         }
                     }
                 }
@@ -172,9 +173,7 @@ class TransactionService {
                             Log.d("PutTransactionService", jsonObject.toString())
                             val id = jsonObject.getString("result")
                             Log.d("PutTransactionService", id)
-                            if(id != null) {
-                                onResult("OK")
-                            }
+                            onResult("OK")
                         }
                         else {
                             Log.d("PutTransactionService", response.message().toString())

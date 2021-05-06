@@ -25,18 +25,20 @@ class DetailBillViewModel() : ViewModel() {
     private val incomeRepository = IncomeRepository(getIncomeDatabase())
     val incomes = incomeRepository.listOfIncomes
 
-    init {
-        refreshDataFromRepository(billId)
-    }
+//    init {
+//        refreshDataFromRepository(billId)
+//    }
 
     private val expenditureRepository = ExpenditureRepository(getExpenditureDatabase())
     val expenditures = expenditureRepository.listOfExpenditures
 
-    init {
-        refreshData(billId)
-    }
+//    init {
+//        refreshData(billId)
+//    }
 
     fun loadIncomes(billId: Int) {
+        refreshData(billId)
+        refreshDataFromRepository(billId)
         Log.d("homeviewModel", incomeRepository.listOfIncomes.value.toString())
     }
 
@@ -45,6 +47,8 @@ class DetailBillViewModel() : ViewModel() {
     }
 
     fun loadExpenditures(billId: Int) {
+        refreshData(billId)
+        refreshDataFromRepository(billId)
         Log.d("homeviewModel", expenditureRepository.listOfExpenditures.value.toString())
     }
 

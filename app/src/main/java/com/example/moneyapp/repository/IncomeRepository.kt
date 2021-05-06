@@ -43,7 +43,6 @@ class IncomeRepository(private val database: IncomesDatabase) {
                     id = it.id!!,
                     sum = it.sum!!,
                     billId = it.billId!!,
-                    categoryId = it.categoryId!!
                 )
             }
             Log.d("incomerepository", incomeEntity.toString())
@@ -59,7 +58,6 @@ class IncomeRepository(private val database: IncomesDatabase) {
             id = randId,
             sum = income.sum.toString().toDouble(),
             billId = income.billId!!,
-            categoryId = income.categoryId!!
         )
 
         Log.d("incomerepository", incomeEntity.toString())
